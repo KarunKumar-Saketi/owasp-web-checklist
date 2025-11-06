@@ -1875,12 +1875,12 @@ http://example.com/getFile?name=../../etc/passwd
                 
                 <div class="remediation-box">
                     <h3>🛠️ Remediation</h3>
-                    <p><b></b>Input Validation: Sanitize and validate all user-supplied file paths.</p>
-                    <p><b></b>Use Whitelisting: Allow access only to explicitly permitted files/directories.</p>
-                    <p><b></b>Avoid Direct File Access: Map user requests to internal identifiers instead of raw file paths.</p>
-                    <p><b></b>Least Privilege: Run applications with minimal OS permissions to limit damage.</p>
-                    <p><b></b>Web Application Firewall (WAF): Detect and block suspicious path traversal attempts.</p>
-                    <p><b></b>Regular Security Testing: Conduct penetration tests and code reviews to catch vulnerabilities.</p>
+                    <p><b>Input Validation:</b> Sanitize and validate all user-supplied file paths.</p>
+                    <p><b>Use Whitelisting:</b> Allow access only to explicitly permitted files/directories.</p>
+                    <p><b>Avoid Direct File Access:</b> Map user requests to internal identifiers instead of raw file paths.</p>
+                    <p><b>Least Privilege:</b> Run applications with minimal OS permissions to limit damage.</p>
+                    <p><b>Web Application Firewall (WAF):</b> Detect and block suspicious path traversal attempts.</p>
+                    <p><b>Regular Security Testing:</b> Conduct penetration tests and code reviews to catch vulnerabilities.</p>
                 </div>
                 
                 <h3>📚 Reference Links:</h3>
@@ -2590,6 +2590,55 @@ Host: victim.com
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html</a></p>
                 <p><a href="https://csrc.nist.gov/pubs/sp/800/52/r2/final">https://csrc.nist.gov/pubs/sp/800/52/r2/final</a></p>
                 <p><a href="https://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls">https://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls</a></p>
+            </div>
+
+    <!-- Topic 29: Rate Limiting -->
+            <div id="rate-limiting" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>29. Rate Limiting</h2>
+                </div>
+                
+                <h3>📌 Rate Limiting</h3>
+                <p>A rate limiting vulnerability occurs when an application does not restrict the number of requests a user can make in a given time. This allows attackers to brute force passwords, abuse APIs, or overload servers, leading to account compromise or denial of service. The fix is to implement proper rate limits, lockouts, and monitoring.</p>
+                <p><b>Definition:</b> Rate limiting controls how many requests a client can make in a set time.</p>
+                <p><b>Vulnerability:</b> If missing or weak, attackers can send unlimited requests without restriction.</p>
+                <p><b>Example:</b> A login form allows unlimited password attempts without delay or lockout.</p>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Impact of the Issue</h3>
+                    <p><b>Brute Force Attacks:</b> Attackers can guess passwords or OTPs quickly.</p>
+                    <p><b>Denial of Service (DoS):</b> Excessive requests can overwhelm servers.</p>
+                    <p><b>Resource Exhaustion:</b> CPU, memory, and bandwidth consumed by malicious traffic.</p>
+                    <p><b>Business Risk:</b> Service downtime, user account compromise, and reputational damage.</p>
+                    <p><b>Regulatory Risk:</b> Breaches of personal data may lead to compliance violations.</p>
+                </div>
+
+                <div class="attack-scenario-box">
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <p><b>Password Brute Force:</b> Attacker tries thousands of passwords on a login form until successful.</p>
+                    <p><b>OTP Guessing:</b> Unlimited attempts to guess a one-time password or reset token.</p>
+                    <p><b>API Abuse:</b> Attackers scrape data by sending millions of requests to an API endpoint.</p>
+                    <p><b>Denial of Service:</b> Flooding requests to exhaust server resources and make the service unavailable.</p>
+                    <p><b>Real-World Example:</b> Many APIs without rate limiting have been exploited to brute force password reset tokens, leading to account takeovers</p>
+                </div>
+                
+                <div class="remediation-box">
+                    <h3>🛠️ Remediation</h3>
+                    <p><b>Set Request Limits:</b> Define maximum requests per user/IP per minute./p>
+                    <p><b>Account Lockouts:</b> Temporarily block accounts after repeated failed logins.</p>
+                    <p><b>CAPTCHA / Bot Detection:</b> Prevent automated scripts from abusing endpoints.</p>
+                    <p><b>Exponential Backoff:</b> Increase wait time after repeated failed attempts.</p>
+                    <p><b>Distributed Rate Limiting:</b> Apply limits across load balancers and APIs consistently.</p>
+                    <p><b>Monitoring & Alerts:</b> Detect unusual traffic spikes and respond quickly.</p>
+                </div>
+                
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://www.geeksforgeeks.org/computer-networks/no-rate-limiting-flaw-in-cyber-security/">https://www.geeksforgeeks.org/computer-networks/no-rate-limiting-flaw-in-cyber-security/</a></p>
+                <p><a href="https://owasp.org/API-Security/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting/">https://owasp.org/API-Security/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting/</a></p>
+                <p><a href="https://www.wallarm.com/what/lack-of-resources-rate-limiting">https://www.wallarm.com/what/lack-of-resources-rate-limiting</a></p>
             </div>
 
         </div>
