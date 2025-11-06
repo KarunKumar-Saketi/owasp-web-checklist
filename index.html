@@ -227,6 +227,7 @@
             margin-bottom: 2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border-left: 4px solid var(--primary);
+            border-top: 4px solid var(--primary);
             transition: var(--transition);
             scroll-margin-top: 20px;
         }
@@ -381,17 +382,18 @@
         }
 
         /* Responsive Styles */
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             body {
                 flex-direction: column;
             }
             
             .sidebar {
                 width: 100%;
-                height: auto;
+                height: 100vh;
                 position: fixed;
                 top: 0;
                 left: -100%;
+                overflow-y: auto;
                 z-index: 999;
                 transition: var(--transition);
                 box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
@@ -2743,4 +2745,4 @@ Host: victim.com
         });
     </script>
 </body>
-</html>
+</html> 
