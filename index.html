@@ -2094,19 +2094,19 @@ Host: victim.com
                 </div>
 
                 <h3>📚 Reference Links:</h3>
-                <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS</a></p>
-                <p><a href="https://owasp.org/www-project-secure-headers/#access-control-allow-origin">https://owasp.org/www-project-secure-headers/#access-control-allow-origin</a></p>
-                <p><a href="https://portswigger.net/web-security/cors">https://portswigger.net/web-security/cors</a></p>
+                <p><a href="https://portswigger.net/web-security/request-smuggling">https://portswigger.net/web-security/request-smuggling</a></p>
+                <p><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/15-Testing_for_HTTP_Splitting_Smuggling">https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/15-Testing_for_HTTP_Splitting_Smuggling</a></p>
+                <p><a href="https://github.com/OWASP/www-project-web-security-testing-guide/blob/master/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/15-Testing_for_HTTP_Splitting_Smuggling.md">https://github.com/OWASP/www-project-web-security-testing-guide/blob/master/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/15-Testing_for_HTTP_Splitting_Smuggling.md</a></p>
             </div>
         </div>
 
-    <!-- Topic 21: Security Headers -->
+    <!-- Topic 22: Security Headers -->
             <div id="security-headers" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-heading"></i>
                     </div>
-                    <h2>21. Security Headers</h2>
+                    <h2>22. Security Headers</h2>
                 </div>
                 
                 <h3>📌Content Security Policy (CSP):</h3><p>It is a security feature that helps prevent Cross-Site Scripting (XSS), clickjacking, and other code injection attacks by controlling which resources (scripts, styles, images, etc.) the browser is allowed to load and execute.</p>
@@ -2136,24 +2136,6 @@ Host: victim.com
                     <p>3. Remove unsafe directives like unsafe-inline, unsafe-eval.</p>
                     <p>4. Use CSP reporting to monitor violations via report-Uri or report-to.</p>
                 </div>
-                
-                <h3>🚀 How to Implement CSP in a React.js Application?</h3>
-                <p>React itself is frontend — CSP is set via server (Node.js, Express, Nginx, Apache, etc.). However, you can structure your app to comply with CSP and set the header from your server.</p>
-                
-                <h4>✅ Step-by-Step Implementation (Example with Express.js):</h4>
-                <pre><code>npm install helmet</code></pre>
-                <pre><code>const express = require('express');
-const helmet = require('helmet');
-
-const app = express();
-
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-    }
-  })
-);</code></pre>
                 
                 <h3>🧠 React Best Practices for CSP</h3>
                 <p>Avoid inline styles/scripts – use external files.</p>
@@ -2192,21 +2174,6 @@ app.use(
                     <p>Avoid using "iframe" to load sensitive interfaces unless absolutely necessary.</p>
                 </div>
                 
-                <h3>🚀 How to Implement the Header Using React.js?</h3>
-                <p>React is a frontend library, so security headers like X-Frame-Options must be configured on the server that serves the React app.</p>
-                
-                <h4>✅ Example with Express.js + Helmet</h4>
-                <p>Install Helmet (security middleware):</p>
-                <pre><code>npm install helmet</code></pre>
-                <p>Add this to your server code (e.g., server.js):</p>
-                <pre><code>const express = require('express');
-const helmet = require('helmet');
-
-const app = express();
-app.use(helmet());</code></pre>
-                <p>This will send this HTTP header in every response:</p>
-                <pre><code>X-Frame-Options: DENY</code></pre>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</a></p>
                 <p><a href="https://owasp.org/www-community/attacks/Clickjacking">https://owasp.org/www-community/attacks/Clickjacking</a></p>
@@ -2238,25 +2205,6 @@ app.use(helmet());</code></pre>
                     <p>Avoid serving files with ambiguous or incorrect MIME types.</p>  
                     <p>Use security middleware or server configuration to automate this header.</p>
                 </div>
-                
-                <h3>🚀 How to Implement the Header Using React.js?</h3>
-                <p>Since React is frontend-only, this header must be set by the server serving your React app.</p>
-                <p>Example: Using Express.js with Helmet</p>
-                <pre><code>npm install helmet</code></pre>
-                <pre><code>const express = require('express');
-const helmet = require('helmet');
-
-const app = express();
-
-app.use(helmet());
-
-app.use(express.static('build'));
-
-app.listen(3000, () =>{
-  console.log('Server running on http://location:3000');
-});</code></pre>
-                <p>This automatically adds:</p>
-                <pre><code>X-Content-Type-Options: nosniff</code></pre>
                 
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options</a></p>
@@ -2291,33 +2239,6 @@ app.listen(3000, () =>{
                     <p>preload — optional, for inclusion in browser preload lists (submit at https://hstspreload.org/).</p>
                 </div>
                 
-                <h3>🚀 How to Implement the Header Using React.js?</h3>
-                <p>Since React is frontend, this header is set on the server or CDN that serves your React app.</p>
-                <p>Example: Using Express.js with Helmet</p>
-                <pre><code>npm install helmet</code></pre>
-                <pre><code>const express = require('express');
-const helmet = require('helmet');
-
-const app = express();
-
-app.use(
-  helmet.hsts({
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true,
-  })
-);
-
-app.use(express.static('build'));
-
-app.listen(3000, () =>{
-  console.log('Server running on http://location:3000');
-});</code></pre>
-                <p>This will send:</p>
-                <pre><code>Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</code></pre>
-                <p>Example: NGINX</p>
-                <pre><code>add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;</code></pre>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security</a></p>
                 <p><a href="https://owasp.org/www-project-secure-headers/#strict-transport-security">https://owasp.org/www-project-secure-headers/#strict-transport-security</a></p>
@@ -2351,30 +2272,6 @@ app.listen(3000, () =>{
                     <p>Regularly review caching policies to match app requirements.</p>
                 </div>
                 
-                <h3>🚀 How to Implement the Cache-Control header Using React.js?</h3>
-                <p>React apps are frontend and do not control HTTP headers directly; these must be set on the server or CDN serving your React app files:</p>
-                <p>1. If using a static file server (Nginx, Apache):</p>
-                <p>Example for Nginx:</p>
-                <pre><code>location /static/ {
-  add_header Cache-Control "public, max-age=31536000, immutable";
-}
-
-location /index.html {
-  add_header Cache-Control "no-cache";
-}</code></pre>
-                <p>2. If serving React with Node.js/Express:</p>
-                <pre><code>app.use(express.static('build', {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
-    } else {
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    }
-  }
-}));</code></pre>
-                <p>3. If using a CDN or hosting platform (Netlify, Vercel, CloudFront):</p>
-                <p>Set cache-control headers in the platform's configuration or rules.</p>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control</a></p>
                 <p><a href="https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header">https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header</a></p>
@@ -2382,13 +2279,13 @@ location /index.html {
 
 
 
-            <!-- Topic 3: Secure Cookies -->
+    <!-- Topic 23: Secure Cookies -->
             <div id="secure-cookies" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-cookie"></i>
                     </div>
-                    <h2>3. Implement Secure, HTTPOnly & SameSite flags on Session Cookies</h2>
+                    <h2>23. Implement Secure, HTTPOnly & SameSite flags on Session Cookies</h2>
                 </div>
                 
                 <h3>📌 What is the Secure Flag?</h3>
@@ -2416,22 +2313,6 @@ location /index.html {
                     <p>Combine Secure with HttpOnly (prevents client-side scripts from accessing cookies) and SameSite attributes to further harden cookie security.</p>
                     <p>Review cookie handling in your backend and frontend to confirm the Secure flag is applied.</p>
                 </div>
-                
-                <h3>🚀 How to implement the Secure flag in a React application?</h3>
-                <p>React runs in the browser and does not directly control cookie attributes like Secure; these are set by the server issuing the cookies.</p>
-                
-                <h4>Steps to implement:</h4>
-                <p>1. On the server (Node.js, Express example):</p>
-                <pre><code>res.cookie('sessionId', sessionId, {
-  httpOnly: true,
-  secure: true,        // Secure flag set here
-  sameSite: 'Strict',
-  maxAge: 3600000
-});</code></pre>
-                <p>2. When using client-side cookies (less recommended for session cookies):</p>
-                <p>Use js-cookie or similar libraries, but the Secure flag can only be set by the server.</p>
-                <p>3. Ensure your app is served over HTTPS, so browsers send Secure cookies.</p>
-                <p>4. In React, access to cookies (e.g., via document.cookie) will automatically respect these flags.</p>
                 
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies#restrict_access_to_cookies">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies#restrict_access_to_cookies</a></p>
@@ -2465,26 +2346,6 @@ location /index.html {
                     <p>Set cookie flags on the server side when issuing cookies.</p>
                 </div>
                 
-                <h3>🚀 How to implement the HTTPOnly flag in a React application?</h3>
-                <p>React is a frontend framework and does not control cookie flags directly because these are set by the server.</p>
-                
-                <h4>Typical approach:</h4>
-                <p>1. Set HttpOnly flag on the server side when issuing cookies.</p>
-                <p>Example in Node.js/Express</p>
-                <pre><code>res.cookie('sessionId', sessionId, {
-  httpOnly: true,
-  secure: true,
-  sameSite: 'Strict',
-  maxAge: 3600000
-});</code></pre>
-                <p>2. On the React side:</p>
-                <p>You cannot read HttpOnly cookies using JavaScript (document.cookie).</p>
-                <p>Cookies are automatically included in HTTP requests by the browser (e.g., via fetch or axios) if the request is to the same origin or with proper CORS settings.</p>
-                <p>Ensure requests are made with credentials when needed:</p>
-                <pre><code>fetch('/api/data', {
-  credentials: 'include'
-});</code></pre>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies#restrict_access_to_cookies">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies#restrict_access_to_cookies</a></p>
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#use-the-httponly-flag">https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#use-the-httponly-flag</a></p>
@@ -2510,49 +2371,15 @@ location /index.html {
                     <p>Prevents access from JavaScript (HttpOnly)</p>
                     <p>Blocks cross-site requests (SameSite=Strict)</p>
                 </div>
-                
-                <h3>⚛️ Implementing SameSite in a React + Node.js Application</h3>
-                <p>React runs on the client side, so cookie flags are mainly configured on the server side (Node.js / Express).</p>
-                
-                <h4>Backend (Node.js + Express) Example:</h4>
-                <pre><code>import express from 'express';
-import session from 'express-session';
-const app = express();
-app.use(session({
-  name: 'sessionId',
-  secret: 'yourSecretKey',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,          // Prevents JS access
-    secure: true,            // Ensures HTTPS only
-    sameSite: 'strict',      // 'lax' or 'none' as needed
-    maxAge: 1000 * 60 * 60,  // 1 hour
-  }
-}));
-
-app.get('/', (req, res) => {
-  res.send('Session cookie set with SameSite flag');
-});
-app.listen(3000, () => console.log('Server running on port 3000'));</code></pre>
-                
-                <h4>Frontend (React)</h4>
-                <p>React itself doesn't control cookie flags, but when you make requests to your backend (using axios, fetch, etc.), ensure cookies are included:</p>
-                <pre><code>import axios from 'axios';
-axios.defaults.withCredentials = true;
-axios.get('https://yourapi.com', { withCredentials: true })
-.then(res => console.log(res.data))
-.catch(err => console.error(err));</code></pre>
-                <p>✅ Important: If you use SameSite=None, you must also set Secure: true and serve the site over HTTPS.</p>
             </div>
 
-            <!-- Topic 4: Local Storage Security -->
+            <!-- Topic 24: Local Storage Security -->
             <div id="local-storage" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h2>4. Sensitive Information in Local Storage</h2>
+                    <h2>24. Sensitive Information in Local Storage</h2>
                 </div>
                 
                 <h3>📌 What Happens When an Application Stores Sensitive Information in Local Storage?</h3>
@@ -2583,30 +2410,19 @@ axios.get('https://yourapi.com', { withCredentials: true })
                     <p>6. Clear sensitive data from storage on logout or session expiration.</p>
                 </div>
                 
-                <h3>🚀 How to Remove Sensitive Information and Best Way to Pass It in ReactJS</h3>
-                <p>Remove sensitive info from local storage:</p>
-                <pre><code>localStorage.removeItem('sensitive_key');
-// or clear all local storage
-localStorage.clear();</code></pre>
-                <p><b>Best practice for handling tokens in React:</b></p>
-                <p>Store tokens in secure, httpOnly cookies (set by your backend).</p>
-                <p>Use React context or state management (Redux, React Context API) to hold sensitive info during the session.</p>
-                <p>Pass tokens via cookies automatically included in HTTP requests.</p>
-                <p>Use libraries like axios with withCredentials: true to send cookies.</p>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#local-storage">https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#local-storage</a></p>
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#session-management">https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#session-management</a></p>
                 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API</a></p>
-            </div>
+            </div>  
 
-            <!-- Topic 5: Vulnerable Components -->
+            <!-- Topic 25: Vulnerable Components -->
             <div id="vulnerable-components" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-cubes"></i>
                     </div>
-                    <h2>5. Components with Known Vulnerabilities</h2>
+                    <h2>25. Components with Known Vulnerabilities</h2>
                 </div>
                 
                 <h3>📌 What Happens When the Application Uses Components with Known Vulnerabilities?</h3>
@@ -2651,13 +2467,13 @@ localStorage.clear();</code></pre>
                 <p><a href="https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/">https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/</a></p>
             </div>
 
-            <!-- Topic 6: Input Validation -->
+            <!-- Topic 26: Input Validation -->
             <div id="input-validation" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-keyboard"></i>
                     </div>
-                    <h2>6. User input validation</h2>
+                    <h2>26. User input validation</h2>
                 </div>
                 
                 <h3>📌 What Happens When the Application Is Not Validating User Input Data?</h3>
@@ -2694,13 +2510,13 @@ localStorage.clear();</code></pre>
                 <p><a href="https://react-hook-form.com/get-started/">https://react-hook-form.com/get-started/</a></p>
             </div>
 
-            <!-- Topic 7: Server Details -->
+            <!-- Topic 27: Server Details -->
             <div id="server-details" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-server"></i>
                     </div>
-                    <h2>7. Exposing Server Details</h2>
+                    <h2>27. Exposing Server Details</h2>
                 </div>
                 
                 <h3>📌 What Happens When the Application Exposes Server Details via Application Errors or Response Headers?</h3>
@@ -2730,11 +2546,6 @@ localStorage.clear();</code></pre>
                     <p><b>5. Perform regular security scans</b> to detect information disclosure.</p>
                 </div>
                 
-                <h3>🚀 How to Implement Proper Error Pages</h3>
-                <p>Create custom error pages for HTTP status codes like 404, 500, 401, etc.</p>
-                <p>In React apps, use error boundaries for UI errors and fallback pages for route errors.</p>
-                <p>On the backend or web server, configure custom static error pages that do not reveal stack traces or sensitive info.</p>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html</a></p>
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html</a></p>
@@ -2742,13 +2553,13 @@ localStorage.clear();</code></pre>
                 <p><a href="https://expressjs.com/en/advanced/best-practice-security.html#disable-x-powered-by-header">https://expressjs.com/en/advanced/best-practice-security.html#disable-x-powered-by-header</a></p>
             </div>
 
-            <!-- Topic 8: TLS Security -->
+            <!-- Topic 28: TLS Security -->
             <div id="tls-security" class="topic-card">
                 <div class="topic-header">
                     <div class="topic-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <h2>8. TLS Cipher Versions</h2>
+                    <h2>28. TLS Cipher Versions</h2>
                 </div>
                 
                 <h3>📌 What is the Issue with TLS Cipher Versions?</h3>
@@ -2775,41 +2586,12 @@ localStorage.clear();</code></pre>
                     <p>Built-in strong ciphers, e.g., TLS_AES_128_GCM_SHA256</p>
                 </div>
                 
-                <h3>🚀 How to Disable TLS 1.0 Ciphers & Enable Secure Ciphers</h3>
-                <p><b>For Apache:</b></p>
-                <pre><code>SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
-SSLCipherSuite ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384</code></pre>
-                
-                <p><b>For Nginx:</b></p>
-                <pre><code>ssl_protocols TLSv1.2 TLSv1.3;
-ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384;</code></pre>
-                
-                <p><b>For Node.js (Express):</b></p>
-                <pre><code>const https = require('https');
-const fs = require('fs');
-
-const options = {
-  key: fs.readFileSync('server-key.pem'),
-  cert: fs.readFileSync('server-cert.pem'),
-  ciphers: [
-    'ECDHE-RSA-AES128-GCM-SHA256',
-    'ECDHE-ECDSA-AES128-GCM-SHA256',
-    'ECDHE-RSA-AES256-GCM-SHA384'
-  ].join(':'),
-  honorCipherOrder: true,
-  secureProtocol: 'TLSv1_2_method'
-};
-
-https.createServer(options, (req, res) => {
-  res.writeHead(200);
-  res.end('Secure connection established\n');
-}).listen(443);</code></pre>
-                
                 <h3>🔗 Reference Links:</h3>
                 <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html</a></p>
                 <p><a href="https://csrc.nist.gov/pubs/sp/800/52/r2/final">https://csrc.nist.gov/pubs/sp/800/52/r2/final</a></p>
                 <p><a href="https://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls">https://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls</a></p>
             </div>
+
         </div>
     </main>
 
